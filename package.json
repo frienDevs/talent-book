@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/prakashvadrevu/talent-book/issues"
   },
-  "homepage": "https://github.com/prakashvadrevu/talent-book#readme"
+  "homepage": "https://github.com/prakashvadrevu/talent-book#readme",
+  "dependencies": {
+    "express": "^4.14.1"
+  },
+  "engines": {
+    "node": "6.6.0"
+  }
 }
