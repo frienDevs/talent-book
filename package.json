@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/prakashvadrevu/talent-book#readme",
   "dependencies": {
+    "bluebird": "^3.4.7",
     "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "firebase": "^3.6.9",

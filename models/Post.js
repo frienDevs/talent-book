@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
-    userId: { type: String, required: true },
+    uid: { type: String, required: true },
     type: { type: String, required: true },
     title: String,
     desc: String,

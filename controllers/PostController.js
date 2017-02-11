@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var auth = require('../auth/Authenticator');
+var User = require('../models/User');
 var Post = require('../models/Post');
 
 // routes
@@ -12,8 +13,9 @@ module.exports = router;
 
 function create(req, res) {
     var post = req.body;
-    User.findOne( {uid : post.uid}, function(err, user){
-        if (err) {
+
+    User.findOne( {uid : post.uid.toString()}, function(err, user) {
+        if (!user) {
             res.status(400).send("Invalid user uid to create post");
         } else {
             var newPost = Post(post);
