@@ -1,9 +1,9 @@
 var admin = require("firebase-admin");
-var serviceAccount = require("../sowmya-firebase-cred.json");
+var serviceAccount = require("../talentbookapp-firebase.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://talent-book.firebaseio.com"
+    databaseURL: "https://talentbookapp.firebaseio.com/"
 });
 
 var AuthService = {};
