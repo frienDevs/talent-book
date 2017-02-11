@@ -9,6 +9,10 @@ body.docs_body {
     background-color: white;
 }
 
+.bg_semi_white {
+    background-color: rgba(255,255,255,0.7);
+}
+
 .bg_semi_black {
     background-color: rgba(0,0,0,0.5);
 }
@@ -54,6 +58,34 @@ body.docs_body {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+.account_popover ul {
+	margin:8px 0px;
+}
+
+.account_popover .row_1 {
+	padding:12px 16px;
+}
+
+.account_popover .email {
+	font-weight:300;
+	color:grey;
+	line-height:1.5;
+	font-size:15px;
+}
+
+.account_popover .name {
+	font-weight:400;
+	color:black;
+	line-height:1.5;
+	font-size:15px;
+}
+
+.account_popover a {
+	text-decoration:none;
+	line-height:1.5;
+    font-size:15px;
 }
 
 

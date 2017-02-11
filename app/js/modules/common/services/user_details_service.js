@@ -2,9 +2,12 @@ common.service('UserDetailsService', ['UserDetails', 'UserRoles', '$cookies',
     function(UserDetails, UserRoles, $cookies) {
 
         this.UserDetails = UserDetails;
+        var self = this;
 
         this.setUser = function(details) {
             this.UserDetails = details;
+            console.log("setting user details");
+            console.log(details);
         };
 
         this.getUser = function() {

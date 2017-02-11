@@ -1,5 +1,5 @@
-app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetailsService', '$window', '$sce',
-    function($scope, $state, States, UserDetailsService, $window, $sce) {
+app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetailsService', '$window', '$sce', '$http',
+    function($scope, $state, States, UserDetailsService, $window, $sce, $http) {
         console.log("app controller");
         var self = this;
         console.log("$state.current.name : " + $state.current.name);
@@ -65,6 +65,17 @@ app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetai
                 tags : ["PUPPY", "PHOTOGRAPHY", "DOG"]
             }
         ];
+
+        self.getTrendingPosts = function(){
+            self.posts = [];
+            $http.get({
+                method:'GET',
+                url:''
+            }, function(response){
+                self.posts = response.data;
+            }, function(error){
+            });
+        };
 
         self.embeddedUrl = function(url) {
             return $sce.trustAsResourceUrl(url);

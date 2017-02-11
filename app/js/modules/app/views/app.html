@@ -1,40 +1,50 @@
 <div flex layout="column">
     <div toolbar></div>
     <!--<md-content flex>-->
+
     <div flex ui-view layout="column" ng-if="!appCtrl.isRoot">
     </div>
-    <div flex ng-if="!appCtrl.isLoggedIn">
-        <div flex style="min-height: 350px" layout="row" layout-align="center center" class="bg_semi_black">
-            <div flex="80" id="hero-content" class="bg_white" layout-padding style="border-radius: 4px">
-                <div layout="row" layout-align="center center">
-                    <h3>Welcome to TalentBook, a place to showcase your talents!</h3>
-                </div>
-                <div layout="row">
-                    <div flex>
-                        <h4>For Talent</h4>
-                        <p>Build your portfolio, let the world know about your special talents!</p>
-                        <p>Be no more san unsung hero - Jump in and explore exciting opportunities around you.</p>
-                    </div>
-                    <div flex>
-                        <h4>For Recruiters</h4>
-                        <p>Find out amazing talent in and around you. Lots of amateurs as well as professional
-                            artists are here aboard!</p>
-                        <p></p>
+    <md-content flex style="background-color: white">
+        <div flex ng-if="!appCtrl.isLoggedIn">
+            <!--<div flex style="min-height: 350px;position:absolute;height:100%; top:0px; left:0px; right:0px; bottom:0px;z-index:0;">
+                <img src="resources/images/hero-banner.jpg"/>
+            </div>-->
+            <div flex layout="column" layout-align="center center" style="min-height:680px;background-image: url('resources/images/hero-banner.jpg');
+        background-repeat: no-repeat;background-position:100%; 100%;background-size: cover;">
+                <div flex layout="row" layout-align="center center" class="bg_semi_black" style="width:100%;">
+                    <div flex="80" id="hero-content" class="bg_semi_white" layout-padding style="border-radius: 4px">
+                        <div layout="row" layout-align="center center">
+                            <h1 style="font-weight:400;">Welcome to TalentBook, a place to showcase your talents!</h1>
+                        </div>
+                        <div layout="row">
+                            <div flex style="margin:0px 8px;">
+                                <h3>For Talent</h3>
+                                <p>Build your portfolio, let the world know about your special
+                                    talents!</p>
+                                <p>Be no more san unsung hero - Jump in and explore exciting
+                                    opportunities around you.</p>
+                            </div>
+                            <div flex style="margin:0px 8px;">
+                                <h3>For Recruiters</h3>
+                                <p>Find out amazing talent in and around you.</p>
+                                <p>Lots of amateurs as well as professional
+                                    artists are here aboard!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <!--<div id="create-post" style="position: fixed; bottom: 48px; right: 48px">
+                <md-button class="md-fab md-primary" aria-label="Create Post">
+                    <md-icon class="material-icons">create</md-icon>
+                </md-button>
+            </div>-->
         </div>
-        <!--<div id="create-post" style="position: fixed; bottom: 48px; right: 48px">
-            <md-button class="md-fab md-primary" aria-label="Create Post">
-                <md-icon class="material-icons">create</md-icon>
-            </md-button>
-        </div>-->
-    </div>
-    <div layout="row" flex layout-align="center start">
-        <div flex="90" layout="row">
-            <div flex="65" layout="row" layout-align="center start" layout-padding>
-                <div flex="90" layout-padding layout="column">
-                    <md-content flex style="background-color: white">
+        <div layout="row" flex layout-align="center start">
+            <div flex="90" layout="row">
+                <div flex="65" layout="row" layout-align="center start" layout-padding>
+                    <div flex="90" layout-padding layout="column">
+
                         <div flex layout="row" layout-align="center start"
                              ng-controller="CreatePostController as cpCtrl">
                             <div flex ng-include="'js/modules/posts/views/create_post.html'"></div>
@@ -47,15 +57,15 @@
                                 </div>
                             </md-toolbar>-->
                             <md-nav-bar class="md-whiteframe-1dp"
-                                        md-selected-nav-item="currentNavItem"
+                                        md-selected-nav-item="self.currentNavItem"
                                         nav-bar-aria-label="navigation links">
-                                <md-nav-item md-nav-click="goto('page1')" name="page1">
+                                <md-nav-item ng-if="self.isLoggedIn" md-nav-click="self.getMyPosts()" name="for_you">
                                     For you
                                 </md-nav-item>
-                                <md-nav-item md-nav-click="goto('page2')" name="page2">
+                                <md-nav-item md-nav-click="self.getTrendingPosts()" name="trending">
                                     Trending
                                 </md-nav-item>
-                                <md-nav-item md-nav-click="goto('page3')" name="page3">
+                                <md-nav-item md-nav-click="self.getLatestPosts()" name="latest">
                                     Latest
                                 </md-nav-item>
                             </md-nav-bar>
@@ -67,17 +77,19 @@
                                         <md-card-avatar>
                                             <img class="md-user-avatar" ng-src="{{post.user.photoUrl}}"/>
                                         </md-card-avatar>
-                                        <md-card-header-text >
+                                        <md-card-header-text>
                                             <span class="md-title">{{post.user.name}}</span>
                                         </md-card-header-text>
                                     </md-card-header>
 
-                                    <div ng-if="post.type === 'IMAGE'" style="overflow:hidden;max-height:180px;" layout="row" layout-align="center center">
+                                    <div ng-if="post.type === 'IMAGE'" style="overflow:hidden;max-height:180px;"
+                                         layout="row" layout-align="center center">
                                         <img ng-src="{{post.url}}" class="md-card-image" style="width:100%;">
                                     </div>
 
                                     <div ng-if="post.type === 'VIDEO'" layout="row" layout-align="center center">
-                                        <iframe width="560" height="315" ng-src="{{appCtrl.embeddedUrl(post.url)}}" frameborder="0" allowfullscreen></iframe>
+                                        <iframe width="560" height="315" ng-src="{{appCtrl.embeddedUrl(post.url)}}"
+                                                frameborder="0" allowfullscreen></iframe>
                                     </div>
 
                                     <md-card-title>
@@ -108,62 +120,69 @@
 
 
                         </div>
-                    </md-content>
-                </div>
-            </div>
-            <div flex="35" layout="row" layout-align="center start" layout-padding>
-                <div flex="100" layout-margin>
-                    <div flex layout="column" class="md-whiteframe-2dp">
-                        <!--<md-toolbar class="md-accent md-hue-1">
-                            <div class="md-toolbar-tools">
-                                <h2 flex md-truncate>Top Talents</h2>
-                            </div>
-                        </md-toolbar>-->
-                        <div>
-                            <h4 flex layout="column" layout-align="center center" style="margin: 12px 0px 0px 0px">Top Talents</h4>
-                        </div>
-                        <div layout="row">
-                            <div ng-repeat="user in appCtrl.topTalents" flex layout="column" layout-align="center center" layout-margin>
-                                <img ng-src="{{user.photoUrl}}" style="border-radius: 50%; height: 64px; width: 64px;"/>
-                                <div class="md-truncate" style="text-align: center">
-                                    <span class="md-subhead grey-text">{{user.name}}</span>
-                                    <!--<br/>-->
-                                    <!--<span class="md-subhead">Dancing</span>-->
-                                </div>
-                            </div>
-
-                            <!--<div layout="column" layout-align="center center" layout-margin>
-                                <div style="border-radius: 50%; height: 96px; width: 96px; text-align: center; border: 2px solid rgb(121,134,203)">
-                                    More
-                                </div>
-                            </div>-->
-
-                        </div>
-                        <div layout="row">
-                            <div ng-repeat="user in appCtrl.topTalents" flex layout="column" layout-align="center center" layout-margin>
-                                <img ng-src="{{user.photoUrl}}" style="border-radius: 50%; height: 64px; width: 64px;"/>
-                                <div class="md-truncate" style="text-align: center">
-                                    <span class="md-subhead grey-text">{{user.name}}</span>
-                                    <!--<br/>-->
-                                    <!--<span class="md-subhead">Dancing</span>-->
-                                </div>
-                            </div>
-
-                            <!--<div layout="column" layout-align="center center" layout-margin>
-                                <div style="border-radius: 50%; height: 96px; width: 96px; text-align: center; border: 2px solid rgb(121,134,203)">
-                                    More
-                                </div>
-                            </div>-->
-
-                        </div>
-
+                        <!--</md-content>-->
                     </div>
-                    <div>Notifications</div>
-                    <div>Events</div>
+                </div>
+                <div flex="35" layout="row" layout-align="center start" layout-padding>
+                    <div flex="100" layout-margin>
+                        <div flex layout="column" class="md-whiteframe-2dp">
+                            <!--<md-toolbar class="md-accent md-hue-1">
+                                <div class="md-toolbar-tools">
+                                    <h2 flex md-truncate>Top Talents</h2>
+                                </div>
+                            </md-toolbar>-->
+                            <div>
+                                <h4 flex layout="column" layout-align="center center" style="margin: 12px 0px 0px 0px">
+                                    Top
+                                    Talents</h4>
+                            </div>
+                            <div layout="row">
+                                <div ng-repeat="user in appCtrl.topTalents" flex layout="column"
+                                     layout-align="center center" layout-margin>
+                                    <img ng-src="{{user.photoUrl}}"
+                                         style="border-radius: 50%; height: 64px; width: 64px;"/>
+                                    <div class="md-truncate" style="text-align: center">
+                                        <span class="md-subhead grey-text">{{user.name}}</span>
+                                        <!--<br/>-->
+                                        <!--<span class="md-subhead">Dancing</span>-->
+                                    </div>
+                                </div>
+
+                                <!--<div layout="column" layout-align="center center" layout-margin>
+                                    <div style="border-radius: 50%; height: 96px; width: 96px; text-align: center; border: 2px solid rgb(121,134,203)">
+                                        More
+                                    </div>
+                                </div>-->
+
+                            </div>
+                            <div layout="row">
+                                <div ng-repeat="user in appCtrl.topTalents" flex layout="column"
+                                     layout-align="center center" layout-margin>
+                                    <img ng-src="{{user.photoUrl}}"
+                                         style="border-radius: 50%; height: 64px; width: 64px;"/>
+                                    <div class="md-truncate" style="text-align: center">
+                                        <span class="md-subhead grey-text">{{user.name}}</span>
+                                        <!--<br/>-->
+                                        <!--<span class="md-subhead">Dancing</span>-->
+                                    </div>
+                                </div>
+
+                                <!--<div layout="column" layout-align="center center" layout-margin>
+                                    <div style="border-radius: 50%; height: 96px; width: 96px; text-align: center; border: 2px solid rgb(121,134,203)">
+                                        More
+                                    </div>
+                                </div>-->
+
+                            </div>
+
+                        </div>
+                        <div>Notifications</div>
+                        <div>Events</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </md-content>
     <!--</md-content>-->
     <!-- <div flex layout="row" layout-align="center start" layout-padding ng-controller="CreatePostController as cpCtrl">
         <div flex="50" ng-include="'js/modules/posts/views/create_post.html'"></div>

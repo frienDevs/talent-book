@@ -2,6 +2,7 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
     'Users', 'StateService', 'UserDetailsService', '$cookies',
     function($rootScope, $scope, $state, States, AuthService, $http , $window, Users, StateService, UserDetailsService, $cookies) {
         console.log("header controller");
+//        console.log(UserDetailsService.getUserEmail());
         var self = this;
         self.hideAccountPopOver = true;
 
@@ -36,7 +37,7 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
                          method: 'POST',
                          url: '/api/users'
                          }).then(function successCallback(response) {
-                         var data = response.data;
+                            var data = response.data;
                             //console.log("User post response " + JSON.stringify(data));
                             localStorage.setItem("user", JSON.stringify(data));
                             UserDetailsService.setUser(data);
