@@ -32,13 +32,13 @@ function create(req, res) {
             if (err) {
                 console.log("Error while creating user : " + JSON.stringify(err));
                 if (DUP_CREATION_REQ === err.code) {
-                    res.status(409).send();
+                    res.status(200).send(user);
                 } else {
                     res.status(400).send("Failed to create User");
                 }
             } else {
                 console.log("User creation success : " + user);
-                res.status(201).send();
+                res.status(201).send(user);
             }
         });
     });
