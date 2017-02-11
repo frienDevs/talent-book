@@ -15,7 +15,7 @@ module.exports = router;
 
 function create(req, res) {
 
-    var token = req.header("auth-token");
+    var token = parseCookies(req)["auth-token"];
     firebaseDatabase.getUserData(token, function (userData, error) {
         if (error) {
             res.status(400).send("Failed to login into User account");
@@ -55,9 +55,10 @@ function update(req, res) {
     var uid = req.header('uid');
     if (uid === id) {
         var query = {'uid' : uid};
-        MyModel.findOneAndUpdate(query, req.body, {upsert:true}, function(err, doc){
+        console.log("Update user body : " + JSON.stringify(req.body));
+        User.findOneAndUpdate(query, req.body, {upsert:true}, function(err, doc){
             if (err) return res.send(400, { error: err });
-            return res.status(200).send(doc);
+            return res.status(200).send(req.body);
         });
     } else {
         res.status(403).send();
@@ -72,5 +73,17 @@ function get(req, res) {
             res.send(users);
         }
     });
+}
+
+function parseCookies(request) {
+    var list = {},
+        rc = request.headers.cookie;
+
+    rc && rc.split(';').forEach(function( cookie ) {
+        var parts = cookie.split('=');
+        list[parts.shift().trim()] = decodeURI(parts.join('='));
+    });
+
+    return list;
 }
 
