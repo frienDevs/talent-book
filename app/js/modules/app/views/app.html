@@ -3,7 +3,7 @@
     <!--<md-content flex>-->
     <div flex ui-view layout="column" ng-if="!appCtrl.isRoot">
     </div>
-    <div flex ng-if="appCtrl.isLoggedIn">
+    <div flex ng-if="!appCtrl.isLoggedIn">
         <div flex style="min-height: 350px" layout="row" layout-align="center center" class="bg_semi_black">
             <div flex="80" id="hero-content" class="bg_white" layout-padding style="border-radius: 4px">
                 <div layout="row" layout-align="center center">
@@ -41,153 +41,73 @@
                         </div>
 
                         <div flex layout="column" style="margin-top:16px; margin-bottom: 16px;">
-                        <!--<md-toolbar class="md-accent md-hue-1">
-                            <div class="md-toolbar-tools">
+                            <!--<md-toolbar class="md-accent md-hue-1">
+                                <div class="md-toolbar-tools">
 
-                            </div>
-                        </md-toolbar>-->
-                        <md-nav-bar class="md-whiteframe-1dp"
-                                    md-selected-nav-item="currentNavItem"
-                                    nav-bar-aria-label="navigation links">
-                            <md-nav-item md-nav-click="goto('page1')" name="page1">
-                                For you
-                            </md-nav-item>
-                            <md-nav-item md-nav-click="goto('page2')" name="page2">
-                                Trending
-                            </md-nav-item>
-                            <md-nav-item md-nav-click="goto('page3')" name="page3">
-                                Latest
-                            </md-nav-item>
-                        </md-nav-bar>
-                        <!--<div>-->
-
-
-                        <md-card style="margin:8px 2px;">
-                            <md-card-header>
-                                <md-card-avatar>
-                                    <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
-                                </md-card-avatar>
-                                <md-card-header-text >
-                                    <span class="md-title">Title</span>
-                                    <span class="md-subhead">subhead</span>
-                                </md-card-header-text>
-                            </md-card-header>
-                            <div style="overflow:hidden;max-height:180px;" layout="row" layout-align="center center">
-                                <img ng-src="resources/dummy/images/puppy.jpg" class="md-card-image" alt="Washed Out" style="width:100%;">
-                            </div>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-headline">Title</span>
-                                </md-card-title-text>
-                            </md-card-title>
-                            <md-card-content>
-                                <p class="md-truncate grey-text">
-                                    The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                                    two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                                </p>
-                            </md-card-content>
-                            <md-card-actions layout="row" layout-align="start center">
-                                <md-card-icon-actions>
-                                    <md-button class="md-icon-button md-accent" aria-label="Favorite">
-                                        <md-icon class="material-icons">thumb_up</md-icon>
-                                    </md-button>
-                                    <md-button class="md-icon-button md-accent" aria-label="Share">
-                                        <md-icon class="material-icons">share</md-icon>
-                                    </md-button>
-                                </md-card-icon-actions>
-                                <md-button>Action 1</md-button>
-                                <md-button>Action 2</md-button>
-                            </md-card-actions>
-                        </md-card>
-
-                        <!-- video -->
-
-                        <md-card style="margin:8px 2px;">
-                            <md-card-header>
-                                <md-card-avatar>
-                                    <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
-                                </md-card-avatar>
-                                <md-card-header-text >
-                                    <span class="md-title">Title</span>
-                                    <span class="md-subhead">subhead</span>
-                                </md-card-header-text>
-                            </md-card-header>
-                            <div style="overflow:hidden;" layout="row" layout-align="center center">
-                                <!--<iframe width="560" height="315" src="https://www.youtube.com/watch?v=5qgcxWLeu_8" frameborder="0" allowfullscreen></iframe>-->
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/5qgcxWLeu_8" frameborder="0" allowfullscreen></iframe>
-                                <!--<img ng-src="resources/dummy/images/puppy.jpg" class="md-card-image" alt="Washed Out" style="width:100%;">-->
-                            </div>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-headline">Title</span>
-                                </md-card-title-text>
-                            </md-card-title>
-                            <md-card-content>
-                                <p class="md-truncate grey-text">
-                                    The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                                    two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                                </p>
-                            </md-card-content>
-                            <md-card-actions layout="row" layout-align="start center">
-                                <md-card-icon-actions>
-                                    <md-button class="md-icon-button md-accent" aria-label="Favorite">
-                                        <md-icon class="material-icons">thumb_up</md-icon>
-                                    </md-button>
-                                    <md-button class="md-icon-button md-accent" aria-label="Share">
-                                        <md-icon class="material-icons">share</md-icon>
-                                    </md-button>
-                                </md-card-icon-actions>
-                                <md-button>Action 1</md-button>
-                                <md-button>Action 2</md-button>
-                            </md-card-actions>
-                        </md-card>
-
-
-                        <!-- image -->
-
-
-
-                            <md-card style="margin:8px 2px;">
-                                <md-card-header>
-                                    <md-card-avatar>
-                                        <md-icon class="md-avatar-icon" md-svg-icon="img/icons/menu.svg"></md-icon>
-                                    </md-card-avatar>
-                                    <md-card-header-text >
-                                        <span class="md-title">Title</span>
-                                        <span class="md-subhead">subhead</span>
-                                    </md-card-header-text>
-                                </md-card-header>
-                                <div style="overflow:hidden;max-height:180px;" layout="row" layout-align="center center">
-                                    <img ng-src="resources/dummy/images/puppy.jpg" class="md-card-image" alt="Washed Out" style="width:100%;">
                                 </div>
-                                <md-card-title>
-                                    <md-card-title-text>
-                                        <span class="md-headline">Title</span>
-                                    </md-card-title-text>
-                                </md-card-title>
-                                <md-card-content>
-                                    <p class="md-truncate grey-text">
-                                        The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-                                        two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
-                                    </p>
-                                </md-card-content>
-                                <md-card-actions layout="row" layout-align="start center">
-                                    <md-card-icon-actions>
-                                        <md-button class="md-icon-button md-accent" aria-label="Favorite">
-                                            <md-icon class="material-icons">thumb_up</md-icon>
-                                        </md-button>
-                                        <md-button class="md-icon-button md-accent" aria-label="Share">
-                                            <md-icon class="material-icons">share</md-icon>
-                                        </md-button>
-                                    </md-card-icon-actions>
-                                    <md-button>Action 1</md-button>
-                                    <md-button>Action 2</md-button>
-                                </md-card-actions>
-                            </md-card>
+                            </md-toolbar>-->
+                            <md-nav-bar class="md-whiteframe-1dp"
+                                        md-selected-nav-item="currentNavItem"
+                                        nav-bar-aria-label="navigation links">
+                                <md-nav-item md-nav-click="goto('page1')" name="page1">
+                                    For you
+                                </md-nav-item>
+                                <md-nav-item md-nav-click="goto('page2')" name="page2">
+                                    Trending
+                                </md-nav-item>
+                                <md-nav-item md-nav-click="goto('page3')" name="page3">
+                                    Latest
+                                </md-nav-item>
+                            </md-nav-bar>
+                            <!--<div>-->
+
+                            <div ng-repeat="post in appCtrl.posts">
+                                <md-card style="margin:8px 2px;">
+                                    <md-card-header>
+                                        <md-card-avatar>
+                                            <img class="md-user-avatar" ng-src="{{post.user.photoUrl}}"/>
+                                        </md-card-avatar>
+                                        <md-card-header-text >
+                                            <span class="md-title">{{post.user.name}}</span>
+                                        </md-card-header-text>
+                                    </md-card-header>
+
+                                    <div ng-if="post.type === 'IMAGE'" style="overflow:hidden;max-height:180px;" layout="row" layout-align="center center">
+                                        <img ng-src="{{post.url}}" class="md-card-image" style="width:100%;">
+                                    </div>
+
+                                    <div ng-if="post.type === 'VIDEO'" layout="row" layout-align="center center">
+                                        <iframe width="560" height="315" ng-src="{{appCtrl.embeddedUrl(post.url)}}" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <span class="md-headline">{{post.title}}</span>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-content>
+                                        <p class="md-truncate grey-text">
+                                            {{post.desc}}
+                                        </p>
+                                    </md-card-content>
+                                    <md-card-actions layout="row" layout-align="start center">
+                                        <md-card-icon-actions>
+                                            <md-button class="md-icon-button md-accent" aria-label="Favorite">
+                                                <md-icon class="material-icons">thumb_up</md-icon>
+                                            </md-button>
+                                            <md-button class="md-icon-button md-accent" aria-label="Share">
+                                                <md-icon class="material-icons">share</md-icon>
+                                            </md-button>
+                                        </md-card-icon-actions>
+                                        <div ng-repeat="tag in post.tags">
+                                            <md-button ng-disabled>{{tag}}</md-button>
+                                        </div>
+                                    </md-card-actions>
+                                </md-card>
+                            </div>
 
 
-                            <!--</div>-->
-                    </div>
+                        </div>
                     </md-content>
                 </div>
             </div>
