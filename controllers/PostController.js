@@ -5,7 +5,7 @@ var User = require('../models/User');
 var Post = require('../models/Post');
 
 // routes
-router.post('/', /*auth,*/ create); // TODO
+router.post('/', auth, create);
 router.get('/', get);
 router.get('/user/:uid', getByUser);
 

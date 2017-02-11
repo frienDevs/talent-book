@@ -23,9 +23,9 @@ angular.module('app.feeds').controller('CreatePostController', ['$scope', '$stat
         };
 
         self.submitPost = function() {
-            self.post.userId = UserDetailsService.getUId();
+            self.post.uid = UserDetailsService.getUId();
             $http({
-                url: 'request-url',
+                url: '/api/posts',
                 method: "POST",
                 data: self.post
             }).then(function(response) {

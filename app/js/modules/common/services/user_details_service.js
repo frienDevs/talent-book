@@ -36,7 +36,7 @@ common.service('UserDetailsService', ['UserDetails', 'UserRoles', '$cookies',
         };
 
         this.getUId = function(){
-            return "";
+            return this.UserDetails.uid;
         };
 
         this.getUserName = function() {
