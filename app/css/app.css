@@ -52,6 +52,11 @@ body.docs_body {
     animation: slide_up_fade_in 0.3s;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
+
 
 /*.slide_up_fade_in.ng-enter {
     transition: all 0.5s linear;

@@ -12,6 +12,21 @@ app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetai
         self.isLoggedIn = UserDetailsService.isUserLoggedIn();
         console.log($state.current.name);
 
+        self.topTalents = [
+            {
+                photoUrl: "resources/dummy/images/puppy.jpg",
+                name: "Prakash Vadrevu"
+            },
+            {
+                photoUrl: "resources/dummy/images/puppy.jpg",
+                name: "Kanaiah Kothalikar"
+            },
+            {
+                photoUrl: "resources/dummy/images/puppy.jpg",
+                name: "Nagendra Varma"
+            }
+        ];
+
         // if (UserDetailsService.isUserLoggedIn()) {
         // 	if (UserDetailsService.isRootSuperAdmin())
         // $state.go(States.CLIENT.ROOT);
