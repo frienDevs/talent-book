@@ -89,11 +89,11 @@ app.config(['$mdThemingProvider', function($mdThemingProvider) {
 
 app.config(['$httpProvider', function ($httpProvider) {
 
-    var initInjector = angular.injector(["ng"]);
-    var $window = initInjector.get("$window");
+    /*var initInjector = angular.injector(["ng"]);
+    var $window = initInjector.get("$window");*/
 
-    var token = $window.localStorage.token;
+    var token = localStorage.token;
     console.log("Adding token header " + token);
-    $httpProvider.defaults.headers.common['auth-token'] =  token;
+    $httpProvider.defaults.headers.common['auth-token'] = token;
 
 }]);

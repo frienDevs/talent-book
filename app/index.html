@@ -91,10 +91,10 @@
             firebase.initializeApp(config);
 
             function fetchData() {
-                var initInjector = angular.injector(["ng"]);
-                var $http = initInjector.get("$http");
 
-                myApplication.constant("UserDetails", {});
+                var user = localStorage.getItem("user");
+
+                myApplication.constant("UserDetails", JSON.parse(user));
                 userDataFetchComplete = true;
                 // make the request to get user details and create constant
                 // return $http.get("/test").then(function(response) {

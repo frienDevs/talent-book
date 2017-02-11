@@ -1,13 +1,13 @@
 common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'States', 'AuthService', '$http', '$window',
-    'Users', 'StateService',
-    function($rootScope, $scope, $state, States, AuthService, $http , $window, Users, StateService) {
+    'Users', 'StateService', 'UserDetailsService', '$cookies',
+    function($rootScope, $scope, $state, States, AuthService, $http , $window, Users, StateService, UserDetailsService, $cookies) {
         console.log("header controller");
         var self = this;
         self.hideAccountPopOver = true;
 
         self.init = function() {
             self.changeIconsOnStateChange();
-            $scope.isLoggedIn = ($window.localStorage.getItem('token') !== null);
+            $scope.isLoggedIn = (localStorage.getItem('token') !== null);
         };
 
         self.changeIconsOnStateChange = function() {
@@ -27,29 +27,35 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
                 //console.log("Signed in as:", JSON.stringify(result.user));
 
                 AuthService.isLoggedIn().getToken().then(function(token) {
+                    $cookies.put('auth-token', token);
+                    localStorage.setItem('token' , token);
                     console.log("token : " + token);
-                    $window.localStorage.setItem('token' , token);
-                    $scope.$apply( function() {
+                    $scope.$apply(function() {
                         $scope.isLoggedIn = true;
                     });
 
-                    new Users().$create().then(function(response) {
+                    $http({
+                         method: 'POST',
+                         url: '/api/users'
+                         }).then(function successCallback(response) {
+                         var data = response.data;
+                            console.log("User post response " + JSON.stringify(data));
+                            localStorage.setItem("user", JSON.stringify(data));
+                            UserDetailsService.setUser(data);
 
-                        var data = response.data;
-                        console.log("User post response " + JSON.stringify(data));
-                        AuthService.setUser(data);
+                            if(response.status === 201) {
+                                StateService.toOnBoardingPage();
+                            } else {
+                                StateService.toFeedsPage();
+                            }
+                         }, function errorCallback(response) {
+                            /*if(response.status === 409) {
+                                //load feeds
+                                console.log("load feeds");
+                                StateService.toFeedsPage();
+                            }*/
 
-                        if(response.status === 201) {
-                            StateService.toOnBoardingPage();
-                        }
-
-                    }, function(error) {
-                        if(error.status === 409) {
-                            //load feeds
-                            console.log("load feeds");
-                        }
                     });
-                    console.log("isLoggedIn " + $scope.isLoggedIn);
                 });
 
             }).catch(function(error) {
@@ -91,7 +97,8 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
 
         $scope.logout = function() {
             console.log("logging out");
-            $window.localStorage.removeItem('token');
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
             AuthService.logout();
             $scope.isLoggedIn = false;
         };

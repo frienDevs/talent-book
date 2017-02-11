@@ -11,9 +11,9 @@ app.use(bodyParser.json());
 
 mongoose.connect('mongodb://localhost/talent-book');
 
-app.get('/', function (req, res) {
-    return res.sendfile('./app/index.html');
-});
+//app.get('/', function (req, res) {
+//    return res.sendfile('./app/index.html');
+//});
 
 app.use('/api/users', require('./controllers/UserController'));
 app.use('/api/posts', require('./controllers/PostController'));

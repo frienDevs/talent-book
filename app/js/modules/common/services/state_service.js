@@ -5,5 +5,9 @@ app_module
             $state.go(States.SLASH.ONBOARDING);
         };
 
+        this.toFeedsPage = function () {
+            $state.go(States.SLASH.FEED);
+        };
+
     }
     ]);

@@ -12,7 +12,7 @@
                           Hi Name, we need some information from you to get you started..
                       </div> -->
                       <div>
-                        <md-radio-group ng-model="data.who">
+                        <md-radio-group ng-model="ctrl.user.userType">
                             <md-radio-button value="hobbyist">I'm a Hobbyist</md-radio-button>
                             <md-radio-button value="full_time"> Looking for full time Opportunities </md-radio-button>
                             <md-radio-button value="part_time"> Looking for part time Opportunities </md-radio-button>
@@ -26,7 +26,7 @@
                         Let us know your interests
                     </div>
                     <div layout-padding>
-                        <md-chips ng-model="ctrl.interests" name="interests" placeholder="Type and press Enter">
+                        <md-chips ng-model="ctrl.user.interests" name="interests" placeholder="Type and press Enter">
                             <md-chip-template>
                                 <strong>{{$chip}}</strong>
                             </md-chip-template>
@@ -34,7 +34,7 @@
                     </div>
                 </form>
                 <div layout="row" layout-align="end center">
-                    <md-button ui-sref="root.feed" class="md-accent md-raised" ng-disabled="!whoAreUForm.$dirty || whoAreUForm.$invalid">Continue</md-button>
+                    <md-button class="md-accent md-raised" ng-disabled="!whoAreUForm.$dirty || whoAreUForm.$invalid" ng-click="ctrl.update()">Continue</md-button>
                 </div>
             </div>
         </div>

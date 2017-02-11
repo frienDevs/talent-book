@@ -8,7 +8,7 @@ common.service('UserDetailsService', ['UserDetails', 'UserRoles', '$cookies',
         };
 
         this.getUser = function() {
-          return this.UserDetails;
+            return this.UserDetails;
         };
 
 
