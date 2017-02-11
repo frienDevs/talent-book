@@ -6,7 +6,7 @@ function isAuthenticated(req, res, next) {
     console.log("checking for auth");
     var token = req.header(AUTH_TOKEN);
     firebaseAuth.authenticate(token, function(uid) {
-        console.log("authenticated : " + uid);
+        req.headers['uid'] = uid;
         next();
     }, function(error) {
         console.log("401");
