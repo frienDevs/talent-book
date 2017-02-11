@@ -1,5 +1,5 @@
 var admin = require("firebase-admin");
-var serviceAccount = require("../../sowmya-firebase-cred.json");
+var serviceAccount = require("../sowmya-firebase-cred.json");
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),

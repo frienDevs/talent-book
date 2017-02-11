@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var auth = require('../auth/Authenticator');
 var User = require('../models/User');
 
 var DUP_CREATION_REQ = 11000;
 
 // routes
-router.post('/', create);
+router.get('/', auth, create);
+router.get('/users', get);
 
 module.exports = router;
+
 function create(req, res) {
 
     newUser.save(function(err) {
@@ -15,7 +18,7 @@ function create(req, res) {
         console.log("err : " + JSON.stringify(err));
         if (err) {
             if (DUP_CREATION_REQ === err.code) {
-                res.status(409);
+                res.status(409).send();
             }
             throw err;
         }
@@ -24,8 +27,12 @@ function create(req, res) {
         res.status(400).send("Failed to create User");
     });
 
-    console.log("Successfully created user");
 };
+
+function get(req, res) {
+    console.log("in get");
+    res.status(510).send();
+}
 
 /*var newUser = User({
  name: 'Peter Quill',
