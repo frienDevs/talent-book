@@ -1,0 +1,43 @@
+<!-- <div layout="column" layout-align="center start" layout-margin> -->
+<md-content flex layout-padding layout="row">
+    <div flex layout-padding layout="row" layout-align="center start">
+        <div flex="75">
+            <div class="md-whiteframe-2dp bg_white slide_up_fade_in" layout="column" layout-padding>
+                <form name="whoAreUForm" flex>
+                    <div class="md-title">
+                        Hi Name, we need some information to get you started..
+                    </div>
+                    <div layout-margin style="margin-top:20px;">
+                      <!-- <div class="md-subhead grey-text">
+                          Hi Name, we need some information from you to get you started..
+                      </div> -->
+                      <div>
+                        <md-radio-group ng-model="data.who">
+                            <md-radio-button value="hobbyist">I'm a Hobbyist</md-radio-button>
+                            <md-radio-button value="full_time"> Looking for full time Opportunities </md-radio-button>
+                            <md-radio-button value="part_time"> Looking for part time Opportunities </md-radio-button>
+                            <md-radio-button value="recruiter_sponsor">I'm a Recruiter / Sponsor</md-radio-button>
+                        </md-radio-group>
+                        </div>
+                    </div>
+                </form>
+                <form name="interestsForm" flex>
+                    <div class="md-title">
+                        Let us know your interests
+                    </div>
+                    <div layout-padding>
+                        <md-chips ng-model="ctrl.interests" name="interests" placeholder="Type and press Enter">
+                            <md-chip-template>
+                                <strong>{{$chip}}</strong>
+                            </md-chip-template>
+                        </md-chips>
+                    </div>
+                </form>
+                <div layout="row" layout-align="end center">
+                    <md-button ui-sref="root.feed" class="md-accent md-raised" ng-disabled="!whoAreUForm.$dirty || whoAreUForm.$invalid">Continue</md-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-content>
+<!-- </div> -->

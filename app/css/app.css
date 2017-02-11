@@ -1,0 +1,130 @@
+body.docs_body {
+    overflow: hidden;
+    max-width: 100%;
+    max-height: 100%;
+    /*background-color:#EFF3F2;*/
+}
+
+.bg_white {
+    background-color: white;
+}
+
+.grey-text {
+    color: grey;
+}
+
+.white-text {
+    color: white !important;
+}
+
+@-webkit-keyframes slide_up_fade_in {
+    0% {
+        transform: translateY(210px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+
+/* Standard syntax */
+
+@keyframes slide_up_fade_in {
+    0% {
+        transform: translateY(210px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.slide_up_fade_in {
+    -webkit-animation: slide_up_fade_in 0.3s;
+    /* Safari 4.0 - 8.0 */
+    animation: slide_up_fade_in 0.3s;
+}
+
+
+/*.slide_up_fade_in.ng-enter {
+    transition: all 0.5s linear;
+    transform: translateY(210px);
+    opacity: 0;
+}
+
+.slide_up_fade_in.ng-enter.ng-enter-active {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.slide_up_fade_in.ng-leave {
+    transition: all 0.5s linear;
+    transform: translateY(210px);
+    opacity: 0;
+}*/
+
+
+/* app css stylesheet */
+
+
+/*.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}*/
+/*@-webkit-keyframes slideInUp {
+    0% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}*/
+
+
+/*@keyframes slide_up {
+    0% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+        visibility: visible;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.slideInUp {
+    -webkit-animation-name: slideInUp;
+    animation-name: slideInUp;
+    transition:0.5s;
+}*/

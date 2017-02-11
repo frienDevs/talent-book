@@ -1,0 +1,94 @@
+<style>
+    .create_post_container md-input-container {
+        /*margin-bottom: 4px;*/
+    }
+
+    .create_post_container .md-errors-spacer {
+        min-width: 0px;
+        min-height: 0px;
+    }
+
+    .expand_section {
+        height: 100%;
+        opacity: 1;
+    }
+
+    .expand_section.ng-enter,
+    .expand_section.ng-leave {
+        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s;
+    }
+
+    .expand_section.ng-enter {
+        opacity: 0;
+        height: 0%;
+    }
+
+    .expand_section.ng-leave.ng-leave-active {
+        transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.1s;
+        opacity: 0;
+        height: 0%;
+    }
+
+    .expand_section.ng-leave,
+    .expand_section.ng-enter.ng-enter-active {
+        height: 100%;
+        opacity: 1;
+    }
+</style>
+<div flex layout="column" class="md-whiteframe-1dp create_post_container">
+    <div layout="row" layout-align="start center">
+        <span class="md-title" style="margin:12px 8px;">Create Post</span>
+        <span flex></span>
+        <md-button ng-click="cpCtrl.createPost()" ng-if="cpCtrl.expand === false" class="md-icon-button md-accent md-hue-3" aria-label="Create Post">
+            <md-icon class="material-icons">add</md-icon>
+        </md-button>
+    </div>
+    <div layout="column" ng-if="cpCtrl.expand" class="expand_section">
+        <form name="createPostForm">
+            <md-divider></md-divider>
+            <div flex layout="column" layout-padding>
+                <div flex layout="column">
+                    <md-input-container flex>
+                        <label>Title</label>
+                        <input ng-model="cpCtrl.post.title" required>
+                    </md-input-container>
+                </div>
+                <div flex layout="column">
+                    <md-input-container flex>
+                        <label>Short Description</label>
+                        <textarea ng-model="cpCtrl.post.desc"></textarea>
+                    </md-input-container>
+                </div>
+                <div flex layout="row" ng-show="cpCtrl.post.type !== ''" layout-align="start center">
+                    <md-input-container flex>
+                        <label>Enter the URL</label>
+                        <input type="url" ng-model="cpCtrl.post.url" required>
+                    </md-input-container>
+                </div>
+            </div>
+            <md-divider></md-divider>
+            <div flex layout="row" layout-align="center center">
+                <md-button ng-click="cpCtrl.post.type='IMAGE'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Image" ng-class="{'md-raised': cpCtrl.post.type === 'IMAGE'}">
+                    <md-tooltip md-direction="top">Add an Image</md-tooltip>
+                    <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'IMAGE'}">add_a_photo</md-icon>
+                </md-button>
+                <md-button ng-click="cpCtrl.post.type='AUDIO'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'AUDIO'}">
+                    <md-tooltip md-direction="top">Add an Audio</md-tooltip>
+                    <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'AUDIO'}">audiotrack</md-icon>
+                </md-button>
+                <md-button ng-click="cpCtrl.post.type='VIDEO'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'VIDEO'}">
+                    <md-tooltip md-direction="top">Add a Video</md-tooltip>
+                    <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'VIDEO'}">personal_video</md-icon>
+                </md-button>
+                <span flex></span>
+                <md-button md-no-ink class="md-primary" ng-click="cpCtrl.expand = !cpCtrl.expand">Cancel</md-button>
+                <div>
+                    <md-tooltip md-direction="top" ng-if="createPostForm.$invalid || !createPostForm.$dirty">Select Video/Audio/Image and enter the URL</md-tooltip>
+                    <md-button class="md-raised md-accent" ng-click="cpCtrl.submitPost()" ng-disabled="createPostForm.$invalid || !createPostForm.$dirty">
+                        Create
+                    </md-button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

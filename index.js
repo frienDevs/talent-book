@@ -4,13 +4,15 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+app.use(express.static(__dirname + '/app'));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb://localhost/talent-book');
 
 app.get('/', function (req, res) {
-    res.send('Hello World!');
+    return res.sendfile('./app/index.html');
 });
 
 app.use('/api/users', require('./controllers/UserController'));
