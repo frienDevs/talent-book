@@ -14,12 +14,18 @@ angular.module('app.feeds').controller('CreatePostController', ['$scope', '$stat
             console.log("create post");
             self.reset();
             self.expand = !self.expand;
+
         };
 
         self.reset();
 
         self.isTypeDefined = function() {
             return self.type !== "";
+        };
+
+        self.setType = function(type){
+            self.post.type = type;
+            self.expand = true;
         };
 
         self.submitPost = function() {
