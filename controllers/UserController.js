@@ -5,11 +5,10 @@ var User = require('../models/User');
 var firebaseDatabase = require('../auth/FirebaseAuth');
 var authUtils = require('../utils/AuthUtils');
 
-var DUP_CREATION_REQ = 11000;
-
 // routes
 router.post('/', auth, create);
 router.put('/:uid', auth, update);
+router.get('/:uid', getUserDetails);
 router.get('/', get);
 
 module.exports = router;
@@ -77,11 +76,21 @@ function parseCookies(request) {
     var list = {},
         rc = request.headers.cookie;
 
-    rc && rc.split(';').forEach(function( cookie ) {
+    rc && rc.split(';').forEach(function (cookie) {
         var parts = cookie.split('=');
         list[parts.shift().trim()] = decodeURI(parts.join('='));
     });
 
     return list;
+}
+
+function getUserDetails(req, res) {
+    User.findOne({uid : req.params.uid}, function (err, user) {
+        if (err) {
+            res.status(404).send(err);
+        } else {
+            res.send(user);
+        }
+    });
 }
 
