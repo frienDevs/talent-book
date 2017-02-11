@@ -8,8 +8,8 @@ var DUP_CREATION_REQ = 11000;
 
 // routes
 router.post('/', auth, create);
-router.put('/:id', auth, update);
-router.get('/users', get);
+router.put('/:uid', auth, update);
+router.get('/', get);
 
 module.exports = router;
 
@@ -45,7 +45,7 @@ function create(req, res) {
 };
 
 function update(req, res) {
-    var id = req.params.id;
+    var id = req.params.uid;
     var uid = req.header('uid');
     if (uid === id) {
         var query = {'uid' : uid};
@@ -59,13 +59,12 @@ function update(req, res) {
 }
 
 function get(req, res) {
-    console.log("in get");
-    res.status(510).send();
+    User.find().exec(function (err, users) {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.send(users);
+        }
+    });
 }
 
-/*var newUser = User({
- name: 'Peter Quill',
- username: 'starlord55',
- password: 'password',
- admin: true
- });*/
