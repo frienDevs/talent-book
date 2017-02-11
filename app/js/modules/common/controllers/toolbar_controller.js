@@ -44,7 +44,6 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
                         }
 
                     }, function(error) {
-                        console.log("Failed to post user data" + JSON.stringify(error));
                         if(error.status === 409) {
                             //load feeds
                             console.log("load feeds");
