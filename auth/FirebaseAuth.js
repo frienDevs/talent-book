@@ -8,6 +8,7 @@ admin.initializeApp({
 
 var AuthService = {};
 AuthService.authenticate = function(token, success, failed) {
+    console.log("Auth token : " + token);
     admin.auth().verifyIdToken(token)
         .then(function(decodedToken) {
             success(decodedToken.uid);

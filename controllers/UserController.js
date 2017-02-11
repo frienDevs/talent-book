@@ -28,19 +28,25 @@ function create(req, res) {
             uid : userData.uid
         });
 
-        newUser.save(function (err, user) {
-            if (err) {
-                console.log("Error while creating user : " + JSON.stringify(err));
-                if (DUP_CREATION_REQ === err.code) {
-                    res.status(200).send(user);
-                } else {
-                    res.status(400).send("Failed to create User");
-                }
+        User.findOne( {uid : newUser.uid.toString()}, function(err, user) {
+
+            if (user) {
+                console.log(" user Body : " + JSON.stringify(user));
+                res.status(200).send(user);
             } else {
-                console.log("User creation success : " + user);
-                res.status(201).send(user);
+                newUser.save(function (err, user) {
+                    if (err) {
+                        console.log("Error while creating user : " + JSON.stringify(err));
+                        res.status(400).send("Failed to create User");
+                    } else {
+                        console.log("User creation success : " + user);
+                        res.status(201).send(user);
+                    }
+                });
             }
+
         });
+
     });
 };
 
