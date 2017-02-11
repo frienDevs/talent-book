@@ -8,6 +8,7 @@ var postSchema = new Schema({
     title: String,
     desc: String,
     url : { type: String, required: true },
+    tags : [],
     created_at: Date,
     updated_at: Date
 });
