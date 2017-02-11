@@ -2,31 +2,45 @@ var express = require('express');
 var router = express.Router();
 var auth = require('../auth/Authenticator');
 var User = require('../models/User');
+var firebaseDatabase = require('../auth/FirebaseAuth');
 
 var DUP_CREATION_REQ = 11000;
 
 // routes
-router.get('/', auth, create);
+router.post('/', auth, create);
 router.get('/users', get);
 
 module.exports = router;
 
 function create(req, res) {
 
-    newUser.save(function(err) {
-
-        console.log("err : " + JSON.stringify(err));
-        if (err) {
-            if (DUP_CREATION_REQ === err.code) {
-                res.status(409).send();
-            }
-            throw err;
+    var token = req.header("auth-token");
+    firebaseDatabase.getUserData(token, function (userData, error) {
+        if (error) {
+            res.status(400).send("Failed to login into User account");
+            throw error;
         }
+        var newUser = User({
+            name: userData.displayName,
+            email: userData.email,
+            photoUrl: userData.photoURL,
+            uid : userData.uid
+        });
 
-        console.log('Failed to create User' + JSON.stringify(err));
-        res.status(400).send("Failed to create User");
+        newUser.save(function (err, user) {
+            if (err) {
+                console.log("Error while creating user : " + JSON.stringify(err));
+                if (DUP_CREATION_REQ === err.code) {
+                    res.status(409).send();
+                } else {
+                    res.status(400).send("Failed to create User");
+                }
+            } else {
+                console.log("User creation success : " + user);
+                res.status(201).send();
+            }
+        });
     });
-
 };
 
 function get(req, res) {
