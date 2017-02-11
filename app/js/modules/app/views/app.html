@@ -1,6 +1,46 @@
 <div flex layout="column">
     <div toolbar></div>
-    <div flex ui-view layout="column"></div>
+    <div flex ui-view layout="column" ng-if="!appCtrl.isRoot">
+    </div>
+    <div flex ng-if="appCtrl.isLoggedIn">
+        <div flex style="min-height: 350px" layout="row" layout-align="center center" class="bg_semi_black">
+            <div flex="80" id="hero-content" class="bg_white" layout-padding style="border-radius: 4px">
+                <div layout="row" layout-align="center center">
+                    <h3>Welcome to TalentBook, a place to showcase your talents!</h3>
+                </div>
+                <div layout="row">
+                    <div flex>
+                        <h4>For Talent</h4>
+                        <p>Build your portfolio, let the world know about your special talents!</p>
+                        <p>Be no more san unsung hero - Jump in and explore exciting opportunities around you.</p>
+                    </div>
+                    <div flex>
+                        <h4>For Recruiters</h4>
+                        <p>Find out amazing talent in and around you. Lots of amateurs as well as professional artists are here aboard!</p>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div id="create-post" style="position: fixed; bottom: 48px; right: 48px">
+            <md-button class="md-fab md-primary" aria-label="Create Post">
+                <md-icon class="material-icons">create</md-icon>
+            </md-button>
+        </div>-->
+    </div>
+    <div layout="row">
+        <div flex="60">
+            <div flex layout="row" layout-align="center start" layout-padding ng-controller="CreatePostController as cpCtrl">
+                <div flex="80" ng-include="'js/modules/posts/views/create_post.html'"></div>
+            </div>
+            <div>Top Talents</div>
+            <div>Feed</div>
+        </div>
+        <div flex="40">
+            <div>Notifications</div>
+            <div>Events</div>
+        </div>
+    </div>
     <!-- <div flex layout="row" layout-align="center start" layout-padding ng-controller="CreatePostController as cpCtrl">
         <div flex="50" ng-include="'js/modules/posts/views/create_post.html'"></div>
     </div> -->

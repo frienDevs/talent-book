@@ -18,6 +18,10 @@ app.get('/', function (req, res) {
 app.use('/api/users', require('./controllers/UserController'));
 app.use('/api/posts', require('./controllers/PostController'));
 
+app.get('*', function (req, res) {
+    return res.sendfile('./app/index.html');
+});
+
 app.listen(3000, function () {
     console.log('Talent-Book is listening on port 3000!');
 });

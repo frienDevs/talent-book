@@ -9,6 +9,10 @@ body.docs_body {
     background-color: white;
 }
 
+.bg_semi_black {
+    background-color: rgba(0,0,0,0.5);
+}
+
 .grey-text {
     color: grey;
 }

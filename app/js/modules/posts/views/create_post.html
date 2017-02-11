@@ -36,11 +36,23 @@
     }
 </style>
 <div flex layout="column" class="md-whiteframe-1dp create_post_container">
-    <div layout="row" layout-align="start center">
-        <span class="md-title" style="margin:12px 8px;">Create Post</span>
+    <div layout="row" ng-click="cpCtrl.createPost()" layout-align="start center">
+        <span class="md-title grey-text" style="margin:12px 8px;">Create new post...</span>
         <span flex></span>
-        <md-button ng-click="cpCtrl.createPost()" ng-if="cpCtrl.expand === false" class="md-icon-button md-accent md-hue-3" aria-label="Create Post">
+        <!--<md-button ng-if="cpCtrl.expand === false" class="md-icon-button md-accent md-hue-3" aria-label="Create Post">
             <md-icon class="material-icons">add</md-icon>
+        </md-button>-->
+        <md-button ng-click="cpCtrl.post.type='IMAGE'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Image" ng-class="{'md-raised': cpCtrl.post.type === 'IMAGE'}">
+            <md-tooltip md-direction="top">Add an Image</md-tooltip>
+            <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'IMAGE'}">add_a_photo</md-icon>
+        </md-button>
+        <md-button ng-click="cpCtrl.post.type='AUDIO'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'AUDIO'}">
+            <md-tooltip md-direction="top">Add an Audio</md-tooltip>
+            <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'AUDIO'}">audiotrack</md-icon>
+        </md-button>
+        <md-button ng-click="cpCtrl.post.type='VIDEO'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'VIDEO'}">
+            <md-tooltip md-direction="top">Add a Video</md-tooltip>
+            <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'VIDEO'}">personal_video</md-icon>
         </md-button>
     </div>
     <div layout="column" ng-if="cpCtrl.expand" class="expand_section">
@@ -68,18 +80,6 @@
             </div>
             <md-divider></md-divider>
             <div flex layout="row" layout-align="center center">
-                <md-button ng-click="cpCtrl.post.type='IMAGE'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Image" ng-class="{'md-raised': cpCtrl.post.type === 'IMAGE'}">
-                    <md-tooltip md-direction="top">Add an Image</md-tooltip>
-                    <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'IMAGE'}">add_a_photo</md-icon>
-                </md-button>
-                <md-button ng-click="cpCtrl.post.type='AUDIO'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'AUDIO'}">
-                    <md-tooltip md-direction="top">Add an Audio</md-tooltip>
-                    <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'AUDIO'}">audiotrack</md-icon>
-                </md-button>
-                <md-button ng-click="cpCtrl.post.type='VIDEO'" class="md-icon-button md-accent md-hue-3" aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'VIDEO'}">
-                    <md-tooltip md-direction="top">Add a Video</md-tooltip>
-                    <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'VIDEO'}">personal_video</md-icon>
-                </md-button>
                 <span flex></span>
                 <md-button md-no-ink class="md-primary" ng-click="cpCtrl.expand = !cpCtrl.expand">Cancel</md-button>
                 <div>

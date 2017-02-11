@@ -4,6 +4,7 @@ app_module.config(['$stateProvider', '$locationProvider', 'States', '$urlRouterP
         $stateProvider.state(States.SLASH.ROOT, {
             url: '/',
             controller: 'AppController',
+            controllerAs: 'appCtrl',
             templateUrl: '/js/modules/app/views/app.html'
         });
     }
