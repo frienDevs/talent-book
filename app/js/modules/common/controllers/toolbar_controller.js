@@ -7,7 +7,7 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
 
         self.init = function() {
             self.changeIconsOnStateChange();
-            $scope.isLoggedIn = (localStorage.getItem('token') !== null);
+            $scope.isLoggedIn = UserDetailsService.isUserLoggedIn();
         };
 
         self.changeIconsOnStateChange = function() {
@@ -25,21 +25,19 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
             AuthService.login().then(function(result) {
                 console.log("Signed in as:", result.user.uid);
                 //console.log("Signed in as:", JSON.stringify(result.user));
+                $rootScope.$broadcast("onUserAuthChanged", true);
 
                 AuthService.isLoggedIn().getToken().then(function(token) {
                     $cookies.put('auth-token', token);
                     localStorage.setItem('token' , token);
-                    console.log("token : " + token);
-                    $scope.$apply(function() {
-                        $scope.isLoggedIn = true;
-                    });
+                    //console.log("token : " + token);
 
                     $http({
                          method: 'POST',
                          url: '/api/users'
                          }).then(function successCallback(response) {
                          var data = response.data;
-                            console.log("User post response " + JSON.stringify(data));
+                            //console.log("User post response " + JSON.stringify(data));
                             localStorage.setItem("user", JSON.stringify(data));
                             UserDetailsService.setUser(data);
 
@@ -97,14 +95,21 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
 
         $scope.logout = function() {
             console.log("logging out");
-            localStorage.removeItem('token');
+            //localStorage.removeItem('token');
             localStorage.removeItem('user');
+            UserDetailsService.removeUser();
             AuthService.logout();
-            $scope.isLoggedIn = false;
+            StateService.toRootPage();
+            $rootScope.$broadcast("onUserAuthChanged", false);
         };
 
         $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
             self.changeIconsOnStateChange();
+        });
+
+        $scope.$on('onUserAuthChanged', function (event, isLoggedIn) {
+            console.log("onUserAuthChanged");
+            $scope.isLoggedIn = isLoggedIn;
         });
 
         self.init();

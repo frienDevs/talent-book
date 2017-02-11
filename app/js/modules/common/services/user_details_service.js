@@ -55,20 +55,18 @@ common.service('UserDetailsService', ['UserDetails', 'UserRoles', '$cookies',
             return this.UserDetails.user.email;
         };
 
-        this.isUserLoggedIn = function() {
-            var data = $cookies.get("user");
+        this.isUserLoggedIn = function () {
+            var data = $cookies.get("auth-token");
             if (data) {
-                var json = JSON.parse(data);
-                if (json && json.id)
-                    return true;
+                return true;
             } else {
                 return false;
             }
             return false;
         };
 
-        this.removeUser = function() {
-            $cookies.remove("user");
+        this.removeUser = function () {
+            $cookies.remove("auth-token");
         };
     }
 ]);

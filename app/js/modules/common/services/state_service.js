@@ -9,5 +9,17 @@ app_module
             $state.go(States.SLASH.FEED);
         };
 
+        this.toRootPage = function () {
+            $state.go(States.SLASH.ROOT);
+        };
+
+        this.getCurrentState = function () {
+            return $state.$current.name;
+        };
+
+        this.reload = function(params) {
+            $state.go(this.getCurrentState(), params);
+        };
+
     }
     ]);

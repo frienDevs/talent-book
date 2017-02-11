@@ -1,5 +1,5 @@
-app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetailsService',
-    function($scope, $state, States, UserDetailsService) {
+app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetailsService', '$window',
+    function($scope, $state, States, UserDetailsService, $window) {
         console.log("app controller");
         var self = this;
         console.log("$state.current.name : " + $state.current.name);
@@ -35,5 +35,10 @@ app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetai
         // 	} else {
         //		$state.go(States.LOGIN);
         // }
+
+        $scope.$on('onUserAuthChanged', function (event, isLoggedIn) {
+            console.log("onUserAuthChanged");
+            self.isLoggedIn = isLoggedIn;
+        });
     }
 ]);
