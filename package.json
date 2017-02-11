@@ -25,7 +25,7 @@
   "dependencies": {
     "bluebird": "^3.4.7",
     "body-parser": "^1.16.1",
-    "cookie-parser": "^1.4.3",
+    "disqus": "^0.1.0",
     "express": "^4.14.1",
     "firebase": "^3.6.9",
     "firebase-admin": "^4.1.0",

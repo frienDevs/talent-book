@@ -3,11 +3,15 @@ var router = express.Router();
 var auth = require('../auth/Authenticator');
 var User = require('../models/User');
 var Post = require('../models/Post');
+var authUtils = require('../utils/AuthUtils');
 
 // routes
 router.post('/', auth, create);
 router.get('/', get);
 router.get('/user/:uid', getByUser);
+router.get('/recommended/users/:uid', auth, postsForYou);
+router.get('/trending', trending);
+router.get('/latest', latest);
 
 module.exports = router;
 
@@ -50,5 +54,36 @@ function getByUser(req, res) {
         } else {
             res.send(posts);
         }
+    });
+}
+
+function postsForYou(req, res) {
+    if (authUtils.isSameUser(req)) {
+
+        User.findOne({uid : req.params.uid}, function(err, user) {
+            Post.find({tags : 'singers'}).sort({likes: 1})
+                .exec(function(posts) {
+                    console.log("Aggregate posts : " + posts);
+                    res.send(posts);
+                });
+        });
+
+    } else {
+        res.status(400).send("Invalid user uid " + req.params.uid);
+    }
+
+}
+
+function trending(req, res) {
+    Post.find({}).sort({likes : -1, updated_at : -1}).exec(function(err, posts) {
+        console.log("Trending posts : " + posts);
+        res.send(posts);
+    });
+}
+
+function latest(req, res) {
+    Post.find({}).sort({updated_at : -1, likes : -1}).exec(function(err, posts) {
+        console.log("Latest posts : " + posts);
+        res.send(posts);
     });
 }

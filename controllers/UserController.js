@@ -3,6 +3,7 @@ var router = express.Router();
 var auth = require('../auth/Authenticator');
 var User = require('../models/User');
 var firebaseDatabase = require('../auth/FirebaseAuth');
+var authUtils = require('../utils/AuthUtils');
 
 var DUP_CREATION_REQ = 11000;
 
@@ -51,12 +52,9 @@ function create(req, res) {
 };
 
 function update(req, res) {
-    var id = req.params.uid;
-    var uid = req.header('uid');
-    if (uid === id) {
-        var query = {'uid' : uid};
-        console.log("Update user body : " + JSON.stringify(req.body));
-        User.findOneAndUpdate(query, req.body, {upsert:true}, function(err, doc){
+    if (authUtils.isSameUser(req)) {
+        var query = {'uid' : req.params.uid};
+        User.findOneAndUpdate(query, req.body, {upsert:true}, function(err, doc) {
             if (err) return res.send(400, { error: err });
             return res.status(200).send(req.body);
         });

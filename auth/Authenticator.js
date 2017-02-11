@@ -1,9 +1,4 @@
 var firebaseAuth = require('./FirebaseAuth');
-var express = require('express');
-var cookieParser = require('cookie-parser');
-
-var app = express();
-app.use(cookieParser());
 
 var AUTH_TOKEN = "auth-token";
 
