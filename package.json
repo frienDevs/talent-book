@@ -1,0 +1,25 @@
+{
+  "name": "talent-book",
+  "version": "1.0.0",
+  "description": "Project created during DO-Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prakashvadrevu/talent-book.git"
+  },
+  "keywords": [
+    "talent",
+    "talent-book",
+    "social",
+    "social-networking"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prakashvadrevu/talent-book/issues"
+  },
+  "homepage": "https://github.com/prakashvadrevu/talent-book#readme"
+}
