@@ -23,7 +23,11 @@
   },
   "homepage": "https://github.com/prakashvadrevu/talent-book#readme",
   "dependencies": {
-    "express": "^4.14.1"
+    "express": "^4.14.1",
+    "firebase": "^3.6.9",
+    "firebase-admin": "^4.1.0",
+    "mongodb": "^2.2.22",
+    "mongoose": "^4.8.2"
   },
   "engines": {
     "node": "6.6.0"
