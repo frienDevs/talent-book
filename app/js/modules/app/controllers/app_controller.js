@@ -63,6 +63,11 @@ app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'State
             return $sce.trustAsResourceUrl(url);
         };
 
+        self.getDate = function(date) {
+            var date = new Date(date);
+            return date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
+        };
+
         // if (UserDetailsService.isUserLoggedIn()) {
         // 	if (UserDetailsService.isRootSuperAdmin())
         // $state.go(States.CLIENT.ROOT);

@@ -6,6 +6,7 @@ angular.module('app.feeds').controller('CreatePostController', ['$scope', '$stat
 
         self.reset = function() {
             self.post = {};
+            self.post.tags = [];
             self.post.type = "";
             self.expand = false;
         };
@@ -28,8 +29,29 @@ angular.module('app.feeds').controller('CreatePostController', ['$scope', '$stat
             self.expand = true;
         };
 
+        function getParameterByName(name, url) {
+            if (!url) {
+              url = window.location.href;
+            }
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
         self.submitPost = function() {
             self.post.uid = UserDetailsService.getUId();
+
+            if (self.post.type === "VIDEO") {
+                if (self.post.url.indexOf("youtube.com") !== -1) {
+                    var url = "https://www.youtube.com/embed/";
+                    var video_id = getParameterByName("v", self.post.url);
+                    self.post.url = url+video_id;
+                }
+            }
+
             $http({
                 url: '/api/posts',
                 method: "POST",

@@ -34,28 +34,34 @@
         height: 100%;
         opacity: 1;
     }
+
+
 </style>
 <div flex layout="column" class="md-whiteframe-1dp create_post_container">
     <div layout="row" layout-align="start center">
         <div flex layout="row" ng-click="cpCtrl.createPost()">
-        <span class="md-title grey-text" style="margin:12px 8px;">Create new post...</span>
-        <span flex></span>
+            <span class="md-title grey-text" style="margin:12px 8px;">Create new post...</span>
+            <span flex></span>
         </div>
         <!--<md-button ng-if="cpCtrl.expand === false" class="md-icon-button md-accent md-hue-3" aria-label="Create Post">
             <md-icon class="material-icons">add</md-icon>
             ng-click="cpCtrl.createPost(); $event.stopPropagation();"
         </md-button>-->
-        <md-button ng-click="cpCtrl.setType('IMAGE')" class="md-icon-button md-accent md-hue-3" aria-label="Add an Image" ng-class="{'md-raised': cpCtrl.post.type === 'IMAGE'}">
+        <md-button ng-click="cpCtrl.setType('IMAGE')" class="md-icon-button md-accent md-hue-3"
+                   aria-label="Add an Image" ng-class="{'md-raised': cpCtrl.post.type === 'IMAGE'}">
             <md-tooltip md-direction="top">Add an Image</md-tooltip>
-            <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'IMAGE'}">add_a_photo</md-icon>
+            <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'IMAGE'}">add_a_photo
+            </md-icon>
         </md-button>
         <!--<md-button ng-click="cpCtrl.setType('AUDIO')" class="md-icon-button md-accent md-hue-3" aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'AUDIO'}">
             <md-tooltip md-direction="top">Add an Audio</md-tooltip>
             <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'AUDIO'}">audiotrack</md-icon>
         </md-button>-->
-        <md-button ng-click="cpCtrl.setType('VIDEO')" class="md-icon-button md-accent md-hue-3" aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'VIDEO'}">
+        <md-button ng-click="cpCtrl.setType('VIDEO')" class="md-icon-button md-accent md-hue-3"
+                   aria-label="Add an Audio" ng-class="{'md-raised': cpCtrl.post.type === 'VIDEO'}">
             <md-tooltip md-direction="top">Add a Video</md-tooltip>
-            <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'VIDEO'}">personal_video</md-icon>
+            <md-icon class="material-icons" ng-class="{'white-text': cpCtrl.post.type === 'VIDEO'}">personal_video
+            </md-icon>
         </md-button>
     </div>
     <div layout="column" ng-if="cpCtrl.expand" class="expand_section">
@@ -74,11 +80,23 @@
                         <textarea ng-model="cpCtrl.post.desc"></textarea>
                     </md-input-container>
                 </div>
-                <div flex layout="row" ng-show="cpCtrl.post.type !== ''" layout-align="start center">
-                    <md-input-container flex>
-                        <label>Enter the URL</label>
-                        <input type="url" ng-model="cpCtrl.post.url" required>
-                    </md-input-container>
+                <div flex ng-show="cpCtrl.post.type !== ''">
+                    <div flex layout="row">
+                        <md-input-container flex>
+                            <label>Enter the URL</label>
+                            <input type="url" ng-model="cpCtrl.post.url" required>
+                        </md-input-container>
+                    </div>
+                    <div flex layout="row">
+                        <div flex style="margin:20px 0px;">
+                            <!--<label>Tags - type and press enter</label>-->
+                            <md-chips flex ng-model="cpCtrl.post.tags" name="tags" placeholder="Type tags and press enter">
+                                <md-chip-template>
+                                    <strong>{{$chip}}</strong>
+                                </md-chip-template>
+                            </md-chips>
+                        </div>
+                    </div>
                 </div>
             </div>
             <md-divider></md-divider>
@@ -86,8 +104,11 @@
                 <span flex></span>
                 <md-button md-no-ink class="md-primary" ng-click="cpCtrl.reset()">Cancel</md-button>
                 <div>
-                    <md-tooltip md-direction="top" ng-if="createPostForm.$invalid || !createPostForm.$dirty">Select Video/Audio/Image and enter the URL</md-tooltip>
-                    <md-button class="md-raised md-accent" ng-click="cpCtrl.submitPost()" ng-disabled="createPostForm.$invalid || !createPostForm.$dirty">
+                    <md-tooltip md-direction="top" ng-if="createPostForm.$invalid || !createPostForm.$dirty">Select
+                        Video/Audio/Image and enter the URL
+                    </md-tooltip>
+                    <md-button class="md-raised md-accent" ng-click="cpCtrl.submitPost()"
+                               ng-disabled="createPostForm.$invalid || !createPostForm.$dirty">
                         Create
                     </md-button>
                 </div>

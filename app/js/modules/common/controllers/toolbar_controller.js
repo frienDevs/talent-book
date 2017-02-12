@@ -58,6 +58,7 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
         $scope.logout = function() {
             console.log("logging out");
             //localStorage.removeItem('token');
+            self.hideAccountPopOver = true;
             localStorage.removeItem('user');
             UserDetailsService.removeUser();
             AuthService.logout();
