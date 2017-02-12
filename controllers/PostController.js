@@ -10,7 +10,7 @@ router.get('/user/:uid', getByUser);
 router.get('/recommended/users/:uid', auth, postsForYou);
 router.get('/trending', trending);
 router.get('/latest', latest);
-router.post('/:id/like', likeAPost);
+router.post('/:id/like', auth, likeAPost);
 router.post('/', auth, create);
 router.get('/', get);
 router.get('/:id', getPost);
@@ -25,6 +25,7 @@ function create(req, res) {
             res.status(400).send("Invalid user uid to create post");
         } else {
             var newPost = Post(post);
+            newPost.likes = newPost.likes || [];
             newPost.save(function (err, post) {
                 if (err) {
                     console.log("Error while creating post : " + JSON.stringify(err));
@@ -92,11 +93,15 @@ function latest(req, res) {
 
 function likeAPost(req, res) {
     Post.findOne({'_id' : req.params.id}, function(err, post) {
-        var uid = req.header.uid;
-        if (post && post.likes[uid] === null) {
+        var uid = req.header('uid');
+        console.log(" uid : " + uid);
+        console.log(" post : " + post);
+
+        if (post && post.likes[uid] == null) {
             Post.findOneAndUpdate({"_id" : post._id}, { $push: { "likes": uid }}, function(err, post){
                 post.likes.push(uid);
                 res.send(post);
+
             });
         } else {
             res.status(200).send("You have already liked it");
