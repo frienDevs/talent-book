@@ -10,7 +10,7 @@
             <!--<div flex style="min-height: 350px;position:absolute;height:100%; top:0px; left:0px; right:0px; bottom:0px;z-index:0;">
                 <img src="resources/images/hero-banner.jpg"/>
             </div>-->
-            <div flex layout="column" layout-align="center center" style="min-height:600px; background-image: url('resources/images/hero-banner.jpg');
+            <div flex layout="column" layout-align="center center" style="min-height:500px; background-image: url('resources/images/hero-banner.jpg');
         background-repeat: no-repeat;background-position:100%; 100%;background-size: cover;">
                 <div flex layout="row" layout-align="center center" class="bg_semi_black" style="width:100%;">
                     <div flex="80" id="hero-content" class="bg_semi_white" layout-padding style="border-radius: 4px">
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div layout="row" layout-align="center center">
-                            <button class="loginBtn loginBtn--facebook" ng-click="loginWithFacebook()">
+                            <button class="loginBtn loginBtn--facebook" ng-click="loginWithFacebook()" style="margin-bottom: 15px">
                                 Login with Facebook
                             </button>
                         </div>
@@ -52,7 +52,7 @@
                 <div flex="65" layout="row" layout-align="center start" layout-padding>
                     <div flex="90" layout-padding layout="column">
 
-                        <div flex layout="row" layout-align="center start"
+                        <div ng-if="appCtrl.isLoggedIn" flex layout="row" layout-align="center start"
                              ng-controller="CreatePostController as cpCtrl">
                             <div flex ng-include="'js/modules/posts/views/create_post.html'"></div>
                         </div>

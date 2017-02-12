@@ -6,7 +6,7 @@ app_module
         };
 
         this.toFeedsPage = function () {
-            $state.go(States.SLASH.FEED);
+            $state.go(States.SLASH.ROOT);
         };
 
         this.toRootPage = function () {

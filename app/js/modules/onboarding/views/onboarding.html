@@ -5,7 +5,7 @@
             <div class="md-whiteframe-2dp bg_white slide_up_fade_in" layout="column" layout-padding>
                 <form name="whoAreUForm" flex>
                     <div class="md-title">
-                        Hi Name, we need some information to get you started..
+                        Hi {{ctrl.user.name}}, You are?
                     </div>
                     <div layout-margin style="margin-top:20px;">
                       <!-- <div class="md-subhead grey-text">
@@ -13,17 +13,17 @@
                       </div> -->
                       <div>
                         <md-radio-group ng-model="ctrl.user.userType">
-                            <md-radio-button value="hobbyist">I'm a Hobbyist</md-radio-button>
-                            <md-radio-button value="full_time"> Looking for full time Opportunities </md-radio-button>
-                            <md-radio-button value="part_time"> Looking for part time Opportunities </md-radio-button>
-                            <md-radio-button value="recruiter_sponsor">I'm a Recruiter / Sponsor</md-radio-button>
+                            <md-radio-button value="recruiter_sponsor">I'm a Recruiter / Sponsor and looking for talent</md-radio-button>
+                            <md-radio-button value="full_time"> I'm looking for Full Time opportunities </md-radio-button>
+                            <md-radio-button value="part_time"> I'm looking for Part Time opportunities </md-radio-button>
+                            <md-radio-button value="hobbyist">I'm a Hobbyist and would like to surf around</md-radio-button>
                         </md-radio-group>
                         </div>
                     </div>
                 </form>
                 <form name="interestsForm" flex>
                     <div class="md-title">
-                        Let us know your interests
+                        Tell us your interests (say, Music, Dance)
                     </div>
                     <div layout-padding>
                         <md-chips ng-model="ctrl.user.interests" name="interests" placeholder="Type and press Enter">
