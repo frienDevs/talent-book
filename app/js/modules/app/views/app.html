@@ -10,7 +10,7 @@
             <!--<div flex style="min-height: 350px;position:absolute;height:100%; top:0px; left:0px; right:0px; bottom:0px;z-index:0;">
                 <img src="resources/images/hero-banner.jpg"/>
             </div>-->
-            <div flex layout="column" layout-align="center center" style="min-height:680px; background-image: url('resources/images/hero-banner.jpg');
+            <div flex layout="column" layout-align="center center" style="min-height:600px; background-image: url('resources/images/hero-banner.jpg');
         background-repeat: no-repeat;background-position:100%; 100%;background-size: cover;">
                 <div flex layout="row" layout-align="center center" class="bg_semi_black" style="width:100%;">
                     <div flex="80" id="hero-content" class="bg_semi_white" layout-padding style="border-radius: 4px">
@@ -130,19 +130,19 @@
                         <!--</md-content>-->
                     </div>
                 </div>
-                <div flex="35" layout="row" layout-align="center start" layout-padding>
+                <div flex="35" layout="column" layout-align="center start" layout-padding>
                     <div flex="100" layout-margin>
+                        <div>
+                            <p class="md-headline" flex layout="column" layout-align="center center" style="margin: 12px 0px 0px 0px">
+                                Top Talents</p>
+                        </div>
                         <div flex layout="column" class="md-whiteframe-2dp">
                             <!--<md-toolbar class="md-accent md-hue-1">
                                 <div class="md-toolbar-tools">
                                     <h2 flex md-truncate>Top Talents</h2>
                                 </div>
                             </md-toolbar>-->
-                            <div>
-                                <h4 flex layout="column" layout-align="center center" style="margin: 12px 0px 0px 0px">
-                                    Top
-                                    Talents</h4>
-                            </div>
+
                             <div layout="row">
                                 <div ng-repeat="user in appCtrl.topTalents" flex layout="column"
                                      layout-align="center center" layout-margin>
@@ -174,24 +174,50 @@
                                     </div>
                                 </div>
 
-                                <!--<div layout="column" layout-align="center center" layout-margin>
-                                    <div style="border-radius: 50%; height: 96px; width: 96px; text-align: center; border: 2px solid rgb(121,134,203)">
-                                        More
-                                    </div>
-                                </div>-->
 
                             </div>
 
                         </div>
-                        <div>Notifications</div>
-                        <div>Events</div>
+
+
+                        <div>
+                            <p class="md-headline" flex layout="column" layout-align="center center" style="margin: 30px 0px 0px 0px">
+                                Events</p>
+                        </div>
+
+                        <md-card style="margin:8px 2px;">
+
+
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <p class="md-title" style="margin-bottom: 5px; margin-top: 2px;">Singing Event</p>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <p class="md-subhead grey-text">
+                                    10 AM Tomorrow @ Ravindra Bharathi
+                                </p>
+                            </md-card-content>
+                        </md-card>
+
+                        <md-card style="margin:8px 2px;">
+
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <p class="md-title" style="margin-bottom: 5px; margin-top: 2px;">Painting Exhibition</p>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content>
+                                <p class="md-subhead grey-text">
+                                    11 AM Sunday @ Hari Hara Kala Bhavan
+                                </p>
+                            </md-card-content>
+                        </md-card>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </md-content>
-    <!--</md-content>-->
-    <!-- <div flex layout="row" layout-align="center start" layout-padding ng-controller="CreatePostController as cpCtrl">
-        <div flex="50" ng-include="'js/modules/posts/views/create_post.html'"></div>
-    </div> -->
 </div>
