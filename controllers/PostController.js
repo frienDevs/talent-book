@@ -110,6 +110,7 @@ function likeAPost(req, res) {
 
             post.updated_at = new Date();
             Post.findOneAndUpdate({"_id": post._id}, {$push: {"likes": uid}}, function (err, post) {
+                post.likes = post.likes || [];
                 post.likes.push(uid);
                 res.send(post);
             });
