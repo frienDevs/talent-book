@@ -39,7 +39,7 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
 
         $scope.$on('onUserAuthChanged', function (event, isLoggedIn) {
             console.log("onUserAuthChanged");
-            $scope.isLoggedIn = isLoggedIn;
+            self.isLoggedIn = isLoggedIn;
         });
 
         self.init();

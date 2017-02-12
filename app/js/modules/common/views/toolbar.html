@@ -6,9 +6,9 @@
         <span flex></span>
         <div layout="row" layout-align="center center" ns-popover ns-popover-timeout="-1"
              ns-popover-hide-on-inside-click="true"
-             ns-popover-template="account_popover" ns-popover-trigger="click" ng-if="!toolbarCtrl.hideAccountPopOver"
+             ns-popover-template="account_popover" ns-popover-trigger="click"
              ns-popover-placement="bottom|right" ns-popover-theme="ns-popover-tooltip-theme"
-             ng-show="toolbarCtrl.isLoggedIn">
+             ng-if="toolbarCtrl.isLoggedIn">
             <i class="material-icons person_icon cursor_pointer">account_circle</i>
         </div>
     </div>
