@@ -66,7 +66,7 @@
                             <md-nav-bar class="md-whiteframe-1dp"
                                         md-selected-nav-item="self.currentNavItem"
                                         nav-bar-aria-label="navigation links">
-                                <md-nav-item ng-if="self.isLoggedIn" md-nav-click="appCtrl.getMyPosts()" name="for_you">
+                                <md-nav-item ng-if="appCtrl.isLoggedIn" md-nav-click="appCtrl.getMyPosts()" name="for_you">
                                     For you
                                 </md-nav-item>
                                 <md-nav-item md-nav-click="appCtrl.getTrendingPosts()" name="trending">
@@ -112,9 +112,12 @@
                                     </md-card-content>
                                     <md-card-actions layout="row" layout-align="start center">
                                         <md-card-icon-actions>
-                                            <md-button class="md-icon-button md-accent" aria-label="Favorite">
-                                                <md-icon class="material-icons">thumb_up</md-icon>
-                                            </md-button>
+                                            <div layout="row" layout="center center">
+                                                <div layout="row" layout-align="center center">10</div>
+                                                <md-button class="md-icon-button md-accent" aria-label="Favorite">
+                                                    <md-icon class="material-icons">thumb_up</md-icon>
+                                                </md-button>
+                                            </div>
                                             <md-button class="md-icon-button md-accent" aria-label="Share">
                                                 <md-icon class="material-icons">share</md-icon>
                                             </md-button>
