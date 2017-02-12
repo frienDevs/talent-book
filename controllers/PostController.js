@@ -10,7 +10,7 @@ router.get('/user/:uid', getByUser);
 router.get('/recommended/users/:uid', auth, postsForYou);
 router.get('/trending', trending);
 router.get('/latest', latest);
-router.get('/:id/like', likeAPost);
+router.post('/:id/like', likeAPost);
 router.post('/', auth, create);
 router.get('/', get);
 router.get('/:id', getPost);

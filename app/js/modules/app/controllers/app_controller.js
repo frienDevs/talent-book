@@ -87,6 +87,17 @@ app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'State
 
         });
 
+        self.like = function(post) {
+            $http({
+                method: 'POST',
+                url: '/api/posts/'+post.id+'/like'
+            }).then(function(response) {
+                if (response.data.likes)
+                    post.likes = response.data.likes;
+            }, function(error){
+            });
+        };
+
         self.updateStatus = function(state) {
             if ( state.name === States.SLASH.ONBOARDING) {
                 self.isRoot = true;
