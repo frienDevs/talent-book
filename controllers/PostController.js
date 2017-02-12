@@ -97,15 +97,21 @@ function likeAPost(req, res) {
         console.log(" uid : " + uid);
         console.log(" post : " + post);
 
-        if (post && post.likes[uid] == null) {
-            Post.findOneAndUpdate({"_id" : post._id}, { $push: { "likes": uid }}, function(err, post){
+        if (post) {
+            post.likes = post.likes || [];
+
+            for (var key in post.likes) {
+                if (post.likes[key] === uid) {
+                    res.status(200).send("You have already liked it");
+                    console.log("You have already liked it");
+                    return;
+                }
+            }
+
+            Post.findOneAndUpdate({"_id": post._id}, {$push: {"likes": uid}}, function (err, post) {
                 post.likes.push(uid);
                 res.send(post);
-
             });
-        } else {
-            res.status(200).send("You have already liked it");
-            console.log("You have already liked it");
         }
     });
 }
