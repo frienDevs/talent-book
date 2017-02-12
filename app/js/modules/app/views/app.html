@@ -60,13 +60,13 @@
                             <md-nav-bar class="md-whiteframe-1dp"
                                         md-selected-nav-item="self.currentNavItem"
                                         nav-bar-aria-label="navigation links">
-                                <md-nav-item ng-if="self.isLoggedIn" md-nav-click="self.getMyPosts()" name="for_you">
+                                <md-nav-item ng-if="self.isLoggedIn" md-nav-click="appCtrl.getMyPosts()" name="for_you">
                                     For you
                                 </md-nav-item>
-                                <md-nav-item md-nav-click="self.getTrendingPosts()" name="trending">
+                                <md-nav-item md-nav-click="appCtrl.getTrendingPosts()" name="trending">
                                     Trending
                                 </md-nav-item>
-                                <md-nav-item md-nav-click="self.getLatestPosts()" name="latest">
+                                <md-nav-item md-nav-click="appCtrl.getLatestPosts()" name="latest">
                                     Latest
                                 </md-nav-item>
                             </md-nav-bar>

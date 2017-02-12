@@ -24,53 +24,38 @@ app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'State
             }
         ];
 
-        self.posts = [
-            {
-                "user" : {
-                    photoUrl: "resources/dummy/images/puppy.jpg",
-                    name: "Prakash Vadrevu"
-                },
-                uid: "123456",
-                type: "IMAGE",
-                title: "My puppy",
-                desc: "Very nice puppy",
-                url : "resources/dummy/images/puppy.jpg",
-                tags : ["PUPPY", "PHOTOGRAPHY", "DOG"]
-            },
-            {
-                "user" : {
-                    photoUrl: "resources/dummy/images/puppy.jpg",
-                    name: "Prakash Vadrevu"
-                },
-                uid: "123456",
-                type: "VIDEO",
-                title: "300+",
-                desc: "Fantastic batting",
-                url : "https://www.youtube.com/embed/5qgcxWLeu_8",
-                tags : ["CRICKET"]
-            },
-            {
-                "user" : {
-                    photoUrl: "resources/dummy/images/puppy.jpg",
-                    name: "Prakash Vadrevu"
-                },
-                uid: "123456",
-                type: "IMAGE",
-                title: "My puppy 2",
-                desc: "Very nice puppy 2",
-                url : "resources/dummy/images/puppy.jpg",
-                tags : ["PUPPY", "PHOTOGRAPHY", "DOG"]
-            }
-        ];
+        self.getUserDetails = function(arr) {
+            angular.forEach(arr, function(value, key){
+                $http.get('/api/users/'+value.uid).then(function(response){
+                    console.log("trending posts : " + JSON.stringify(response));
+                    value.user = response.data;
+                }, function(error){
+                    console.log("error : " + JSON.stringify(error));
+                }) ;
+            });
+        };
 
-        self.getTrendingPosts = function(){
+        self.getTrendingPosts = function() {
             self.posts = [];
-            $http.get({
-                method:'GET',
-                url:''
-            }, function(response){
+            console.log("getTrendingPosts : entered");
+            $http.get('/api/posts/trending').then(function(response){
+                console.log("trending posts : " + JSON.stringify(response));
                 self.posts = response.data;
+                self.getUserDetails(response.data);
             }, function(error){
+                console.log("error : " + JSON.stringify(error));
+            }) ;
+        };
+
+        self.getLatestPosts = function(){
+            self.posts = [];
+            console.log("getLatestPosts : entered");
+            $http.get('/api/posts/latest').then(function(response){
+                console.log("latest posts : " + JSON.stringify(response));
+                self.posts = response.data;
+                self.getUserDetails(response.data);
+            }, function(error){
+                console.log("error : " + JSON.stringify(error));
             });
         };
 
@@ -106,5 +91,6 @@ app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'State
         };
 
         self.updateStatus($state.current);
+        self.getTrendingPosts();
     }
 ]);

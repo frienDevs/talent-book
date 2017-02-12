@@ -34,6 +34,9 @@ function create(req, res) {
                 console.log(" user Body : " + JSON.stringify(user));
                 res.status(200).send(user);
             } else {
+
+                console.log("newUser : " + newUser);
+
                 newUser.save(function (err, user) {
                     if (err) {
                         console.log("Error while creating user : " + JSON.stringify(err));
