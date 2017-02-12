@@ -9,7 +9,7 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
         self.init = function() {
             self.changeIconsOnStateChange();
             self.isLoggedIn = UserDetailsService.isUserLoggedIn();
-            self.user = UserDetailsService.getUser();
+            $rootScope.loggedInUser = UserDetailsService.getUser();
         };
 
         self.changeIconsOnStateChange = function() {

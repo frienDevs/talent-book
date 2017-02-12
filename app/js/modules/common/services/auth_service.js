@@ -26,8 +26,6 @@ function AuthService($firebaseAuth, $window, UserDetailsService, $cookies, $root
 
             isLoggedIn().getToken().then(function(token) {
                 $cookies.put('auth-token', token);
-                localStorage.setItem('token' , token);
-                //console.log("token : " + token);
 
                 $http({
                     method: 'POST',
@@ -38,6 +36,8 @@ function AuthService($firebaseAuth, $window, UserDetailsService, $cookies, $root
                     localStorage.setItem("user", JSON.stringify(data));
                     $rootScope.$broadcast("onUserAuthChanged", true);
                     UserDetailsService.setUser(data);
+
+                    $rootScope.loggedInUser = data;
 
                     if(response.status === 201) {
                         StateService.toOnBoardingPage();

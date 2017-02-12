@@ -8,8 +8,8 @@
              ns-popover-hide-on-inside-click="true"
              ns-popover-template="account_popover" ns-popover-trigger="click"
              ns-popover-placement="bottom|right" ns-popover-theme="ns-popover-tooltip-theme"
-             ng-if="toolbarCtrl.isLoggedIn">
-            <i class="material-icons person_icon cursor_pointer">account_circle</i>
+             ng-show="toolbarCtrl.isLoggedIn" ng-cloak>
+            <img ng-src="{{loggedInUser.photoUrl}}" style="border-radius:50%; height:48px; width:48px;"/>
         </div>
     </div>
 
@@ -17,15 +17,15 @@
         <div class="triangle"></div>
         <div class="ns-popover-tooltip account_popover" md-whiteframe="1" layout="column">
             <div flex layout="row" class="row_1">
-                <div layout="row" layout-align="center center">
+                <!--<div layout="row" layout-align="center center">
                     <img ng-src="{{toolbarCtrl.user.photoUrl}}" style="border-radius:50%; height:48px; width:48px;"/>
-                </div>
-                <div layout="column" layout-align="center start" style="margin-left:8px;">
+                </div>-->
+                <div layout="column" layout-align="center start">
                     <div flex class="name">
-                        {{toolbarCtrl.user.name}}
+                        {{loggedInUser.name}}
                     </div>
                     <div flex class="email">
-                        {{toolbarCtrl.user.email}}
+                        {{loggedInUser.email}}
                     </div>
                 </div>
             </div>
