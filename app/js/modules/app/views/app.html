@@ -2,9 +2,10 @@
     <div toolbar></div>
     <!--<md-content flex>-->
 
-    <div flex ui-view layout="column" ng-if="!appCtrl.isRoot">
+    <div flex ui-view layout="column" ng-if="appCtrl.isRoot">
     </div>
-    <md-content flex style="background-color: white">
+
+    <md-content flex style="background-color: white" ng-if="!appCtrl.isRoot">
         <div flex ng-if="!appCtrl.isLoggedIn">
             <!--<div flex style="min-height: 350px;position:absolute;height:100%; top:0px; left:0px; right:0px; bottom:0px;z-index:0;">
                 <img src="resources/images/hero-banner.jpg"/>

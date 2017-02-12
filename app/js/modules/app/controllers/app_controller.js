@@ -1,14 +1,11 @@
-app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetailsService', '$window', '$sce', '$http',
-    function($scope, $state, States, UserDetailsService, $window, $sce, $http) {
+app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'States', 'UserDetailsService', '$window', '$sce', '$http',
+    function($rootScope, $scope, $state, States, UserDetailsService, $window, $sce, $http) {
         console.log("app controller");
         var self = this;
         console.log("$state.current.name : " + $state.current.name);
         console.log("States.SLASH.ROOT : " + States.SLASH.ROOT);
-        if ($state.current.name === States.SLASH.ROOT) {
-            self.isRoot = true;
-        } else {
-            self.isRoot = false;
-        }
+        self.isRoot = false;
+
         self.isLoggedIn = UserDetailsService.isUserLoggedIn();
         console.log($state.current.name);
 
@@ -94,5 +91,20 @@ app_module.controller('AppController', ['$scope', '$state', 'States', 'UserDetai
             console.log("onUserAuthChanged");
             self.isLoggedIn = isLoggedIn;
         });
+
+        $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+            self.updateStatus(toState);
+
+        });
+
+        self.updateStatus = function(state) {
+            if ( state.name === States.SLASH.ONBOARDING) {
+                self.isRoot = true;
+            } else {
+                self.isRoot = false;
+            }
+        };
+
+        self.updateStatus($state.current);
     }
 ]);
