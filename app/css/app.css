@@ -151,6 +151,21 @@ body.docs_body {
     background: #E74B37;
 }
 
+
+.material-icons.md-20 {
+    font-size: 20px;
+    height:20px;
+    width:20px;
+    min-width:20px;
+    min-height:px;
+}
+.material-icons.md-16 { font-size: 16px; }
+.material-icons.md-24 { font-size: 24px; }
+
+.cursor_pointer {
+    cursor:pointer;
+}
+
 /*.slide_up_fade_in.ng-enter {
     transition: all 0.5s linear;
     transform: translateY(210px);

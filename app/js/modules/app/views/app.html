@@ -117,10 +117,18 @@
                                     </md-card-content>
                                     <md-card-actions layout="row" layout-align="start center">
                                         <md-card-icon-actions>
-                                            <md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="appCtrl.like(post)">
+                                            <div layout="row" ng-click="appCtrl.like(post)" layout-align="start center"
+                                                 style="padding:4px; border-radius:2px; border:1px solid blue;"
+                                                 class="cursor_pointer">
+                                                <div>
+                                                    <md-icon class="material-icons md-20 md-accent">thumb_up</md-icon>
+                                                </div>
+                                                <span>{{"&nbsp;"+post.likes.length}}</span>
+                                            </div>
+                                            <!--<md-button class="md-icon-button md-accent" aria-label="Favorite" ng-click="appCtrl.like(post)">
                                                 <md-tooltip md-direction="top">{{post.likes.length+" Likes"}}</md-tooltip>
                                                 <md-icon class="material-icons">thumb_up</md-icon>
-                                            </md-button>
+                                            </md-button>-->
                                             <md-button class="md-icon-button md-accent" aria-label="Share">
                                                 <md-icon class="material-icons">share</md-icon>
                                             </md-button>
