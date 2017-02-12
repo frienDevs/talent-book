@@ -4,19 +4,14 @@
     <div class="md-toolbar-tools">
         <span>Talent Book</span>
         <span flex></span>
-        <!--<div ng-show="isLoggedIn">
-            <a href="" ng-click="ping()">ping</a>
-        </div>-->
-        <!--<div ng-hide="isLoggedIn">
-            <a href="" ng-click="loginWithFacebook()">Login</a>
-        </div>-->
+        <div layout="row" layout-align="center center" ns-popover ns-popover-timeout="-1"
+             ns-popover-hide-on-inside-click="true"
+             ns-popover-template="account_popover" ns-popover-trigger="click" ng-if="!toolbarCtrl.hideAccountPopOver"
+             ns-popover-placement="bottom|right" ns-popover-theme="ns-popover-tooltip-theme" ng-show="isLoggedIn">
+            <i class="material-icons person_icon cursor_pointer">account_circle</i>
+        </div>
     </div>
-    <div layout="row" layout-align="center center" ns-popover ns-popover-timeout="-1"
-         ns-popover-hide-on-inside-click="true"
-         ns-popover-template="account_popover" ns-popover-trigger="click" ng-if="!toolbarCtrl.hideAccountPopOver"
-         ns-popover-placement="bottom|right" ns-popover-theme="ns-popover-tooltip-theme" ng-show="isLoggedIn">
-        <i class="material-icons person_icon cursor_pointer">account_circle</i>
-    </div>
+
     <script type="text/ng-template" id="account_popover">
         <div class="triangle"></div>
         <div class="ns-popover-tooltip account_popover" md-whiteframe="1" layout="column">
@@ -40,5 +35,4 @@
             </div>
         </div>
     </script>
-    </div>
 </md-toolbar>
