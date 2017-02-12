@@ -9,21 +9,6 @@ app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'State
         self.isLoggedIn = UserDetailsService.isUserLoggedIn();
         console.log($state.current.name);
 
-        self.topTalents = [
-            {
-                photoUrl: "resources/dummy/images/puppy.jpg",
-                name: "Prakash Vadrevu"
-            },
-            {
-                photoUrl: "resources/dummy/images/puppy.jpg",
-                name: "Kanaiah Kothalikar"
-            },
-            {
-                photoUrl: "resources/dummy/images/puppy.jpg",
-                name: "Nagendra Varma"
-            }
-        ];
-
         self.getUserDetails = function(arr) {
             angular.forEach(arr, function(value, key){
                 $http.get('/api/users/'+value.uid).then(function(response){
@@ -33,6 +18,16 @@ app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'State
                     console.log("error : " + JSON.stringify(error));
                 }) ;
             });
+        };
+
+        self.leaderboard = function() {
+            self.posts = [];
+            $http.get('/api/users/suggestions/top').then(function(response){
+                console.log("top users : " + JSON.stringify(response));
+                self.topTalents = response.data;
+            }, function(error){
+                console.log("error fetching top users : " + JSON.stringify(error));
+            }) ;
         };
 
         self.getTrendingPosts = function() {
@@ -102,5 +97,6 @@ app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'State
 
         self.updateStatus($state.current);
         self.getTrendingPosts();
+        self.leaderboard();
     }
 ]);

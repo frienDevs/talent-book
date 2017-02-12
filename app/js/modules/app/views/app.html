@@ -135,7 +135,7 @@
                     <div flex="100" layout-margin>
                         <div>
                             <p class="md-headline" flex layout="column" layout-align="center center" style="margin: 12px 0px 0px 0px">
-                                Top Talents</p>
+                                Top Users</p>
                         </div>
                         <div flex layout="column" class="md-whiteframe-2dp">
                             <!--<md-toolbar class="md-accent md-hue-1">
@@ -145,7 +145,7 @@
                             </md-toolbar>-->
 
                             <div layout="row">
-                                <div ng-repeat="user in appCtrl.topTalents" flex layout="column"
+                                <div ng-repeat="user in appCtrl.leaderboard" flex layout="column"
                                      layout-align="center center" layout-margin>
                                     <img ng-src="{{user.photoUrl}}"
                                          style="border-radius: 50%; height: 64px; width: 64px;"/>
