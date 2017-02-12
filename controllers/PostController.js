@@ -85,7 +85,7 @@ function trending(req, res) {
 }
 
 function latest(req, res) {
-    Post.find({}).sort({updated_at : -1, likes : -1}).exec(function(err, posts) {
+    Post.find({}).sort({updated_at : -1}).exec(function(err, posts) {
         console.log("Latest posts : " + posts);
         res.send(posts);
     });
