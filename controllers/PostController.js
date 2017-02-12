@@ -59,15 +59,15 @@ function getByUser(req, res) {
 
 function postsForYou(req, res) {
     if (authUtils.isSameUser(req)) {
-
         User.findOne({uid : req.params.uid}, function(err, user) {
-            Post.find({tags : 'singers'}).sort({likes: 1})
-                .exec(function(posts) {
-                    console.log("Aggregate posts : " + posts);
+
+            Post.find({tags : {$in : [user.interests]}})
+                .sort({likes : -1, updated_at : -1})
+                .exec(function(err, posts) {
+                    console.log("Trending posts : " + posts);
                     res.send(posts);
                 });
         });
-
     } else {
         res.status(400).send("Invalid user uid " + req.params.uid);
     }
