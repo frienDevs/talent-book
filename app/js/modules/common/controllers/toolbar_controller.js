@@ -8,7 +8,8 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
 
         self.init = function() {
             self.changeIconsOnStateChange();
-            $scope.isLoggedIn = UserDetailsService.isUserLoggedIn();
+            self.isLoggedIn = UserDetailsService.isUserLoggedIn();
+            self.user = UserDetailsService.getUser();
         };
 
         self.changeIconsOnStateChange = function() {
@@ -21,41 +22,7 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
             }
         };
 
-        $scope.loginWithFacebook = function() {
-            AuthService.login();
-
-        };
-
-        $scope.ping = function() {
-            /*$http({
-                method: 'POST',
-                url: 'http://192.171.3.1:3000/api/users'
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                console.log("ping response " + JSON.stringify(response));
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log("ping response " + JSON.stringify(error));
-            });*/
-
-           /* $http({
-                method: 'POST',
-                url: '/api/users'
-            }).then(function successCallback(response) {
-                // this callback will be called asynchronously
-                // when the response is available
-                console.log("ping response " + JSON.stringify(response));
-            }, function errorCallback(response) {
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-                console.log("ping response " + JSON.stringify(response));
-            });*/
-        };
-
-
-        $scope.logout = function() {
+        self.logout = function() {
             console.log("logging out");
             //localStorage.removeItem('token');
             self.hideAccountPopOver = true;
