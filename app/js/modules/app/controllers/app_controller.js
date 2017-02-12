@@ -1,5 +1,5 @@
-app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'States', 'UserDetailsService', '$window', '$sce', '$http',
-    function($rootScope, $scope, $state, States, UserDetailsService, $window, $sce, $http) {
+app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'States', 'UserDetailsService', '$window', '$sce', '$http', 'AuthService',
+    function($rootScope, $scope, $state, States, UserDetailsService, $window, $sce, $http, AuthService) {
         console.log("app controller");
         var self = this;
         console.log("$state.current.name : " + $state.current.name);
@@ -71,6 +71,11 @@ app_module.controller('AppController', ['$rootScope', '$scope', '$state', 'State
         // 	} else {
         //		$state.go(States.LOGIN);
         // }
+
+        $scope.loginWithFacebook = function() {
+            AuthService.login();
+        };
+
 
         $scope.$on('onUserAuthChanged', function (event, isLoggedIn) {
             console.log("onUserAuthChanged");

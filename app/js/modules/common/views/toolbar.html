@@ -1,14 +1,15 @@
-<!--<md-toolbar class="md-accent md-hue-1 md-whiteframe-1dp">-->
-<md-toolbar class="md-whiteframe-1dp">
+<md-toolbar class="md-accent md-hue-4 md-whiteframe-1dp">
+<!--<md-toolbar class="md-primary md-hue-2 md-whiteframe-1dp">-->
+<!--<md-toolbar class="md-whiteframe-1dp">-->
     <div class="md-toolbar-tools">
         <span>Talent Book</span>
         <span flex></span>
         <!--<div ng-show="isLoggedIn">
             <a href="" ng-click="ping()">ping</a>
         </div>-->
-        <div ng-hide="isLoggedIn">
+        <!--<div ng-hide="isLoggedIn">
             <a href="" ng-click="loginWithFacebook()">Login</a>
-        </div>
+        </div>-->
         <div layout="row" layout-align="center center" ns-popover ns-popover-timeout="-1"
              ns-popover-template="account_popover" ns-popover-trigger="click" ng-if="!toolbarCtrl.hideAccountPopOver"
              ns-popover-placement="bottom|right" ns-popover-theme="ns-popover-tooltip-theme" ng-show="isLoggedIn">

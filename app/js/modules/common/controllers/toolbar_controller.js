@@ -22,46 +22,7 @@ common.controller('ToolbarController', ['$rootScope', '$scope', '$state', 'State
         };
 
         $scope.loginWithFacebook = function() {
-            console.log("login with facebook");
-            AuthService.login().then(function(result) {
-                console.log("Signed in as:", result.user.uid);
-                //console.log("Signed in as:", JSON.stringify(result.user));
-                $rootScope.$broadcast("onUserAuthChanged", true);
-
-                AuthService.isLoggedIn().getToken().then(function(token) {
-                    $cookies.put('auth-token', token);
-                    localStorage.setItem('token' , token);
-                    //console.log("token : " + token);
-
-                    $http({
-                         method: 'POST',
-                         url: '/api/users'
-                         }).then(function successCallback(response) {
-                            var data = response.data;
-                            //console.log("User post response " + JSON.stringify(data));
-                            localStorage.setItem("user", JSON.stringify(data));
-                            UserDetailsService.setUser(data);
-
-                            if(response.status === 201) {
-                                StateService.toOnBoardingPage();
-                            } else {
-                                StateService.toFeedsPage();
-                            }
-                         }, function errorCallback(response) {
-                            /*if(response.status === 409) {
-                                //load feeds
-                                console.log("load feeds");
-                                StateService.toFeedsPage();
-                            }*/
-
-                    });
-                });
-
-            }).catch(function(error) {
-                console.error("Authentication failed:", error);
-            });
-
-
+            AuthService.login();
 
         };
 

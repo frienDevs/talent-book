@@ -10,27 +10,33 @@
             <!--<div flex style="min-height: 350px;position:absolute;height:100%; top:0px; left:0px; right:0px; bottom:0px;z-index:0;">
                 <img src="resources/images/hero-banner.jpg"/>
             </div>-->
-            <div flex layout="column" layout-align="center center" style="min-height:680px;background-image: url('resources/images/hero-banner.jpg');
+            <div flex layout="column" layout-align="center center" style="min-height:680px; background-image: url('resources/images/hero-banner.jpg');
         background-repeat: no-repeat;background-position:100%; 100%;background-size: cover;">
                 <div flex layout="row" layout-align="center center" class="bg_semi_black" style="width:100%;">
                     <div flex="80" id="hero-content" class="bg_semi_white" layout-padding style="border-radius: 4px">
-                        <div layout="row" layout-align="center center">
-                            <h1 style="font-weight:400;">Welcome to TalentBook, a place to showcase your talents!</h1>
+                        <div layout="column" layout-align="center center">
+                            <h1 style="font-weight:400; margin-bottom: 5px; padding-bottom: 5px; font-size: 50px">Welcome to TalentBook!</h1>
+                            <h3 style="font-weight:400; margin: 0px; padding-top: 5px;">A platform to showcase your talents!</h3>
                         </div>
                         <div layout="row">
                             <div flex style="margin:0px 8px;">
-                                <h3>For Talent</h3>
-                                <p>Build your portfolio, let the world know about your special
+                                <h2 layout="column" layout-align="center center">For Talent</h2>
+                                <p layout="column" layout-align="center center">Build your portfolio, let the world know about your special
                                     talents!</p>
-                                <p>Be no more san unsung hero - Jump in and explore exciting
+                                <p layout="column" layout-align="center center">Join now and explore exciting
                                     opportunities around you.</p>
                             </div>
                             <div flex style="margin:0px 8px;">
-                                <h3>For Recruiters</h3>
-                                <p>Find out amazing talent in and around you.</p>
-                                <p>Lots of amateurs as well as professional
-                                    artists are here aboard!</p>
+                                <h2 layout="column" layout-align="center center">For Recruiters</h2>
+                                <p layout="column" layout-align="center center">Find out amazing talent around you.</p>
+                                <p layout="column" layout-align="center center">Lots of amateurs as well as professional
+                                    artists are here!</p>
                             </div>
+                        </div>
+                        <div layout="row" layout-align="center center">
+                            <button class="loginBtn loginBtn--facebook" ng-click="loginWithFacebook()">
+                                Login with Facebook
+                            </button>
                         </div>
                     </div>
                 </div>
