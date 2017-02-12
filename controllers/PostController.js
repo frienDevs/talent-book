@@ -8,10 +8,12 @@ var authUtils = require('../utils/AuthUtils');
 // routes
 router.post('/', auth, create);
 router.get('/', get);
+router.get('/:id', getPost);
 router.get('/user/:uid', getByUser);
 router.get('/recommended/users/:uid', auth, postsForYou);
 router.get('/trending', trending);
 router.get('/latest', latest);
+router.get('/:id/like', likeAPost);
 
 module.exports = router;
 
@@ -87,3 +89,29 @@ function latest(req, res) {
         res.send(posts);
     });
 }
+
+function likeAPost(req, res) {
+    Post.findOne({'_id' : req.params.id}, function(err, post) {
+        var uid = req.header.uid;
+        if (post && post.likes[uid] === null) {
+            Post.findOneAndUpdate({"_id" : post._id}, { $push: { "likes": uid }}, function(err, post){
+                post.likes.push(uid);
+                res.send(post);
+            });
+        } else {
+            res.status(200).send("You have already liked it");
+            console.log("You have already liked it");
+        }
+    });
+}
+
+function getPost(req, res) {
+    Post.findOne({'_id' : req.params.id}, function(err, post) {
+        if (post) {
+            res.send(post);
+        } else {
+            res.status(400).send("Failed to like the post" + req.params.uid);
+        }
+    });
+};
+

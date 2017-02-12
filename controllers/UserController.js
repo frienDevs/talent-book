@@ -10,6 +10,8 @@ router.post('/', auth, create);
 router.put('/:uid', auth, update);
 router.get('/:uid', getUserDetails);
 router.get('/', get);
+router.get('/suggestions/top', topSuggestedUsers);
+router.get('/:uid/suggestions/top', auth, topSuggestedUserOfUserInterest);
 
 module.exports = router;
 
@@ -97,3 +99,41 @@ function getUserDetails(req, res) {
     });
 }
 
+function topSuggestedUsers(req, res) {
+    console.log("top suggested users");
+    User.find().exec(function (err, users) {
+        console.log(users);
+    });
+    User.find()
+        .sort({likes : -1, updated_at : -1, created_at : -1})
+        .exec(function (err, users) {
+            if (err) {
+                res.status(404).send(err);
+            } else {
+                res.send(users);
+            }
+        });
+}
+
+function topSuggestedUserOfUserInterest(req, res) {
+    if (authUtils.isSameUser(req)) {
+        User.findOne({uid : req.params.uid}, function (err, user) {
+            if (err) {
+                res.status(404).send(err);
+            } else {
+                User.find({interests : {$in : [user.interests]}})
+                    .sort({likes : -1, updated_at : -1, created_at : -1})
+                    .exec(function (err, user) {
+                        if (err) {
+                            res.status(404).send(err);
+                        } else {
+                            res.send(user);
+                        }
+                    });
+            }
+        });
+
+    } else {
+        res.status(400).send("Invalid user uid " + req.params.uid);
+    }
+}

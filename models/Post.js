@@ -10,7 +10,7 @@ var postSchema = new Schema({
     url : { type: String, required: true },
     tags : [],
     postType: String,
-    likes : Number,
+    likes : [],
     created_at: Date,
     updated_at: Date
 });
@@ -29,6 +29,15 @@ postSchema.pre('save', function(next) {
 
     next();
 });
+
+/*postSchema.virtual('id').get(function(){
+    return this._id.toHexString();
+});*/
+
+postSchema.set('toJSON', {
+    virtuals: true
+});
+
 
 // the schema is useless so far
 // we need to create a model using it
